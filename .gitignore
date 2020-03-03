@@ -1,0 +1,6 @@
+# Mac osx
+.DS_Store
+
+# Project specific
+node_modules/
+dist/
