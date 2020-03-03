@@ -1,3 +1,5 @@
+const Dotenv = require('dotenv-webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -30,6 +32,10 @@ module.exports = {
         ]
     },
     plugins: [
+        new Dotenv(),
+        new CopyPlugin([
+            { from: 'src/products.json', to: 'products.json' }
+        ]),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: "D'n Oetel"

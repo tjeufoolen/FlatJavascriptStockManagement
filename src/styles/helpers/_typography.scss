@@ -1,0 +1,20 @@
+// Typography
+$font-family-sans-serif: 'Open Sans', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+$font-weight-bold: 700;
+$font-weight-semi-bold: 600;
+$font-weight-regular: 400;
+
+.title {
+    font-size: 36px;
+    font-weight: $font-weight-bold;
+}
+.subtitle {
+    font-size: 26px;
+    font-weight: $font-weight-semi-bold;
+}
+.paragraph {
+    font-size: 16px;
+    font-weight: $font-weight-regular;
+}

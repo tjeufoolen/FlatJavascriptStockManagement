@@ -1,0 +1,47 @@
+// Colors
+$primary-color: #41A836;
+$secondary-color: #662083;
+$text-color: #333333;
+$background-color: #ffffff;
+$light-grey-color: #E8E8E8;
+$dark-grey-color: #333333;
+
+// Background
+.bg {
+    background-color: $background-color !important;;
+}
+.bg-primary {
+    background-color: $primary-color !important;
+}
+.bg-secondary {
+    background-color: $secondary-color !important;;
+}
+.bg-light-grey {
+    background-color: $light-grey-color !important;;
+}
+.bg-dark-grey {
+    background-color: $dark-grey-color !important;;
+}
+.bg-white {
+    background-color: white !important;
+}
+
+// Text
+.text {
+    color: $text-color !important;
+}
+.text-primary {
+    color: $primary-color !important;
+}
+.text-secondary {
+    color: $secondary-color !important;
+}
+.text-light-grey {
+    color: $light-grey-color !important;
+}
+.text-dark-grey {
+    color: $dark-grey-color !important;
+}
+.text-white {
+    color: white !important;
+}
