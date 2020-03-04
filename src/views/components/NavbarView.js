@@ -37,7 +37,10 @@ export class NavbarView extends View {
         this.navbarMenu.id = "navbarNavAltMarkup";
         this.navbarMenuList = this.createElement("div", ["navbar-nav"]);
         menuItems.forEach(item => {
-            this.navbarMenuList.innerHTML += `<a href="${item.url}" class="nav-item nav-link">${item.title}</a>`;
+            let menuItem = this.createElement("a", ["nav-item", "nav-link"]);
+            menuItem.href = item.url;
+            menuItem.innerText = item.title;
+            this.navbarMenuList.appendChild(menuItem);
         })
 
         // Append the menuItems to its own container
