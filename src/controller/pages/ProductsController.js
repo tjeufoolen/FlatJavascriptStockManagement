@@ -13,8 +13,8 @@ export class ProductsController {
     }
 
     createProduct(){
-        this.view.clear();
-        this.view = new CreateProductsController(this);
+        // this.view.clear();
+        // this.view = new CreateProductsController(this);
 
         // let createProductsController = new CreateProductsController(this);
         // this.view = new CreateProductsPage(createProductsController);

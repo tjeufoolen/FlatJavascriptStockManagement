@@ -1,8 +1,6 @@
-import { ContentView } from '../components/ContentView';
-
 const { Page } = require('./Page');
 
-export class CreateProductsPage extends page {
+export class CreateProductsPage extends Page {
     constructor(createProductsController) {
         super();
         
@@ -12,7 +10,6 @@ export class CreateProductsPage extends page {
         this.heading = this.createElement("h2", ["heading"]);
         this.heading.innerText = "Product aanmaken";
         
-
         // Add to root
         this.addElementToRoot(this.heading);
     }
