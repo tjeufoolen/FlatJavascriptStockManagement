@@ -4,7 +4,12 @@ import { ProductsPage } from '../../views/pages/ProductsPage';
 
 export class CreateProductsController {
     constructor(productsController) {
+        this.productsController = productsController;
+    }
+
+    draw(){
         this.view = new ProductsPage(this);
     }
+
 
 }

@@ -1,11 +1,13 @@
 import { ProductsPage } from '../../views/pages/ProductsPage';
-import { CreateProductsPage } from '../../views/pages/CreateProductsPage';
-import { CreateProductsController } from './CreateProductsController';
+import { CreateProductsPage } from '../../views/pages/CreateProductPage';
+import { CreateProductController } from './CreateProductController';
 
 export class ProductsController {
     constructor(appController) {
         // Set instance variables
         this.products = appController.getProducts();
+        this.createProductController = new CreateProductController(this);
+
     }
 
     draw() {
@@ -13,6 +15,9 @@ export class ProductsController {
     }
 
     createProduct(){
+        
+
+
         // this.view.clear();
         // this.view = new CreateProductsController(this);
 
