@@ -1,3 +1,3 @@
-class Category {
+export class Category {
     
 }
