@@ -1,7 +1,15 @@
 import { NavbarView } from '../../views/components/NavbarView';
 
 export class NavbarController {
-    constructor() {
-        this.view = new NavbarView();
+    constructor(appController) {
+        // Controller
+        this.appController = appController;
+
+        // View
+        this.view = new NavbarView(this);
+    }
+
+    switchPage(page) {
+        this.appController.switchPage(page);
     }
 }
