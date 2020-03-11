@@ -8,7 +8,7 @@ export class ContentView extends View {
         this.root = document.body;
 
         // The content
-        this.content = this.createElement("main", ["container"]);
+        this.content = this.createElement("main", ["container", "my-3"]);
         this.content.id = "content";
 
         // Append the content to the root

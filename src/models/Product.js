@@ -1,10 +1,10 @@
 export class Product {
-    constructor(name, description, costPrice, sellPrice, minimumStock, currentStock, category) {
+    constructor(name, description, costPrice, sellPrice, minimalStock, currentStock, category) {
         this.name = name;
         this.description = description;
         this.costPrice = costPrice;
         this.sellPrice = sellPrice;
-        this.minimumStock = minimumStock;
+        this.minimalStock = minimalStock;
         this.currentStock = currentStock;
         this.category = category;
     }
