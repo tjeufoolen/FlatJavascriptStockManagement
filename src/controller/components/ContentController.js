@@ -21,10 +21,10 @@ export class ContentController {
 
         // Set new page
         switch(page) {
-            case this.appController.pages.PRODUCTS:
-                this.controller = new ProductsController();
+            case this.appController.enums.pages.PRODUCTS:
+                this.controller = new ProductsController(this.appController);
                 break;
-            case this.appController.pages.WAREHOUSE:
+            case this.appController.enums.pages.WAREHOUSE:
             default:
                 this.controller = new WarehouseController();
             break;

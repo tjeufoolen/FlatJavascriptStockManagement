@@ -34,7 +34,7 @@ module.exports = {
     plugins: [
         new Dotenv(),
         new CopyPlugin([
-            { from: 'src/products.json', to: 'products.json' }
+            { from: 'src/storage/products.json', to: 'products.json' }
         ]),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({

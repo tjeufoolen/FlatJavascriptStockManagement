@@ -3,7 +3,10 @@ import { CreateProductsPage } from '../../views/pages/CreateProductsPage';
 import { CreateProductsController } from './CreateProductsController';
 
 export class ProductsController {
-    constructor() {
+    constructor(appController) {
+        // Set instance variables
+        this.products = appController.getProducts();
+
         // View
         this.view = new ProductsPage(this);
     }
