@@ -4,7 +4,7 @@
         "description": "Met deze sjaal gaat u warm en stijlvol naar oeteldonk!",
         "costPrice": 2.50,
         "sellPrice": 10,
-        "minimumStock": 100,
+        "minimalStock": 100,
         "currentStock": 210,
         "category": {
             "type": "clothing",
@@ -17,7 +17,7 @@
         "description": "Auwwwww wat lief!",
         "costPrice": 0.50,
         "sellPrice": 2,
-        "minimumStock": 50,
+        "minimalStock": 50,
         "currentStock": 55,
         "category": {
             "type": "frill",
@@ -29,7 +29,7 @@
         "description": "Nog niet uitgefeest? Koop nu de oeteldonk slingers en vier thuis lekker verder!",
         "costPrice": 2.00,
         "sellPrice": 15,
-        "minimumStock": 100,
+        "minimalStock": 100,
         "currentStock": 341,
         "category": {
             "type": "decoration",
@@ -43,7 +43,7 @@
         "description": "Ook al is het verboden, wij verkopen het toch!",
         "costPrice": 0.50,
         "sellPrice": 1.50,
-        "minimumStock": 100,
+        "minimalStock": 100,
         "currentStock": 500,
         "category": {
             "type": "frill",

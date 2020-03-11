@@ -17,6 +17,7 @@ export class AppController {
     }
 
     init() {
+        // Set global enums
         this.enums = {
             "pages": {
                 WAREHOUSE: 'warehouse',
@@ -28,6 +29,8 @@ export class AppController {
                 CLOTHING: 'clothing'
             }
         };
+
+        // Set navigation menu items
         this.menuItems = [
             { page: this.enums.pages.WAREHOUSE, title: "Magazijn" },
             { page: this.enums.pages.PRODUCTS, title: "Producten" },
@@ -38,8 +41,16 @@ export class AppController {
             const data = require('../storage/products.json');
             const products = this.jsonConverter.convertJSON(data);
 
-            localStorage.setItem("products", JSON.stringify(products));
+            this.setProducts(products);
         }
+    }
+
+    getProducts() {
+        return this.jsonConverter.convertJSON(JSON.parse(localStorage.getItem("products")));
+    }
+
+    setProducts(products) {
+        localStorage.setItem("products", JSON.stringify(products));
     }
 
     switchPage(page) {

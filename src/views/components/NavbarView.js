@@ -31,7 +31,7 @@ export class NavbarView extends View {
         this.navbarMenu = this.createElement("div", ["collapse", "navbar-collapse", "justify-content-end"]);
         this.navbarMenu.id = "navbarNavAltMarkup";
         this.navbarMenuList = this.createElement("div", ["navbar-nav"]);
-        controller.appController.menuItems.forEach(item => {
+        controller.menuItems.forEach(item => {
             let menuItem = this.createElement("span", ["nav-item", "nav-link"]);
             menuItem.onclick = () => controller.switchPage(item.page);
             menuItem.innerText = item.title;

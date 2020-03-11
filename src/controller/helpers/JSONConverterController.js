@@ -26,7 +26,7 @@ export class JSONConverterController {
             }
 
             let product = new Product(
-                p.name, p.description, p.costPrice, p.sellPrice, p.minimumStock, p.currentStock, category
+                p.name, p.description, p.costPrice, p.sellPrice, p.minimalStock, p.currentStock, category
             );
 
             products.push(product);
