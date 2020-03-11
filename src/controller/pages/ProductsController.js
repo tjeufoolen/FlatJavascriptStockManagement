@@ -6,8 +6,9 @@ export class ProductsController {
     constructor(appController) {
         // Set instance variables
         this.products = appController.getProducts();
+    }
 
-        // View
+    draw() {
         this.view = new ProductsPage(this);
     }
 
