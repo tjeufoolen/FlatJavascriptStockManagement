@@ -1,5 +1,6 @@
 {
     "name": "Kleding",
+    "category": "clothing",
     "sections": [
         [
             {"type": "storage", "productId": null},

@@ -3,3 +3,59 @@
         cursor: pointer;
     }
 }
+
+.selected-product {
+    padding: $default-spacing;
+    background: #ececec;
+    border-radius: $default-border-radius;
+    margin-top: 10px;
+
+    .selected-product-name {
+        min-height: 28px;
+        
+        &:empty {
+            background-color: #cfcfcf;
+            border-radius: $default-border-radius;
+            opacity: 0.5;
+        }
+    }
+    .selected-product-description {
+        min-height: 48px;
+        
+        &:empty {
+            background-color: #cfcfcf;
+            border-radius: $default-border-radius;
+            opacity: 0.5;
+        }
+    }
+    .selected-product-attributes {
+        tr {
+            th {
+                padding: 2px $default-spacing 2px 0;
+            }
+
+            td {
+                min-height: 25px;
+                width: 34%;
+                text-align: right;
+    
+                &:empty {
+                    background-color: #cfcfcf;
+                    opacity: 0.5;
+                }
+            }
+
+            &:first-child {
+                td {
+                    border-radius: $default-border-radius $default-border-radius 0 0;
+                }
+            }
+
+            &:last-child {
+                td {
+                    border-radius: 0 0 $default-border-radius $default-border-radius;
+                }
+            }
+        }
+    }
+}

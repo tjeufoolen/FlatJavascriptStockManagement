@@ -1,12 +1,15 @@
 const { View } = require('../View');
 
 export class RegionComponent extends View {
-    constructor(controller) {
+    constructor(controller, root) {
         super();
 
         // Set instance variables
         this.controller = controller;
-        this.root = document.querySelector("#content");
+        this.root = root;
+
+        // Create selector
+        this.createRegionSelector();
 
         // Create map container
         this.region = this.createElement("div", ["region"]);
@@ -15,9 +18,50 @@ export class RegionComponent extends View {
         this.generateRegion();
     }
 
+    update() {
+        this.updateMap();
+        this.updateRegionSelector();
+    }
+
     updateMap() {
         this.region.innerHTML = "";
         this.generateRegion();
+    }
+
+    updateRegionSelector() {
+        let elem = this.regionSelector.querySelector(".nav-item .active");
+        if (elem != null) {
+            elem.classList.remove("active");
+            let items = this.regionSelector.querySelectorAll(".nav-item .nav-link");
+            items.forEach(i => {
+                if (i.innerText == this.controller.selectedRegion.name) {
+                    i.classList.add("active");
+                }
+            });
+        }
+    }
+
+    createRegionSelector(root) {
+        this.regionSelector = this.createElement("ul", ["nav", "nav-tabs", "region-selector"]);
+        
+        this.controller.warehouse.regions.forEach(r => {
+            // Create navigation item
+            let navItem = this.createElement("li", ["nav-item"]);
+
+            // Create navigation link
+            let navLink = this.createElement("a", ["nav-link"]);
+            if (this.controller.selectedRegion.name == r.name) navLink.classList.add("active");
+            navLink.onclick = () => this.controller.switchRegion(r.name);
+            navLink.innerText = r.name;
+
+            // Add navigation link to navigation item
+            navItem.appendChild(navLink);
+
+            // Add navigation item to region selector
+            this.regionSelector.appendChild(navItem);
+        });
+
+        this.root.appendChild(this.regionSelector);
     }
 
     generateRegion() {

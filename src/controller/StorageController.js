@@ -31,7 +31,7 @@ export class StorageController {
             const regions = [];
             context.keys().forEach(function (key) {
                 const data = context(key);
-                regions.push({"name": data.name, "sections": data.sections})
+                regions.push({"name": data.name, "category": data.category, "sections": data.sections})
             });
             const warehouse = this.converter.convertWarehouse(regions);
             

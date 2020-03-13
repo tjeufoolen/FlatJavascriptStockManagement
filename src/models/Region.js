@@ -1,6 +1,7 @@
 export class Region {
-    constructor(name, sections) {
+    constructor(name, category, sections) {
         this.name = name;
+        this.category = category;
         this.sections = sections;
     }
 }

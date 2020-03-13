@@ -1,5 +1,6 @@
 {
     "name": "Decoratie",
+    "category": "decoration",
     "sections": [
         [
             {"type": "storage", "productId": null},
