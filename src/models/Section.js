@@ -1,4 +1,4 @@
-export class Category {
+export class Section {
     constructor(type) {
         this.type = type;
     }

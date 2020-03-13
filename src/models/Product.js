@@ -1,5 +1,6 @@
 export class Product {
-    constructor(name, description, costPrice, sellPrice, minimalStock, currentStock, category) {
+    constructor(id, name, description, costPrice, sellPrice, minimalStock, currentStock, category) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.costPrice = costPrice;
