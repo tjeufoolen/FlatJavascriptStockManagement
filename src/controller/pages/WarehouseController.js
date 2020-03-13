@@ -14,7 +14,7 @@ export class WarehouseController {
 
     switchRegion(name) {
         this.selectedRegion = this.warehouse.regions.find(r => r.name == name);
-        this.view.map.updateMap();
+        this.view.region.updateMap();
         this.view.updateRegionSelector();
     }
 }

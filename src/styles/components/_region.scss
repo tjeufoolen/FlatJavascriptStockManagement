@@ -1,4 +1,10 @@
 .region {
+    border: 1px solid #ececec;
+    border-top: 0;
+    border-radius: 0 0 $default-border-radius $default-border-radius;
+    padding: $default-spacing;
+    text-align: center;
+
     .region-row {
         height: 20px;
 

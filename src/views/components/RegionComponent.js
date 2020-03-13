@@ -1,6 +1,6 @@
 const { View } = require('../View');
 
-export class MapComponent extends View {
+export class RegionComponent extends View {
     constructor(controller) {
         super();
 
@@ -9,14 +9,14 @@ export class MapComponent extends View {
         this.root = document.querySelector("#content");
 
         // Create map container
-        this.map = this.createElement("div", ["region"]);
+        this.region = this.createElement("div", ["region"]);
 
         // Fill container
         this.generateRegion();
     }
 
     updateMap() {
-        this.map.innerHTML = "";
+        this.region.innerHTML = "";
         this.generateRegion();
     }
 
@@ -31,10 +31,10 @@ export class MapComponent extends View {
                 regionRow.appendChild(regionSection);
             });
 
-            _self.map.appendChild(regionRow);
+            _self.region.appendChild(regionRow);
         });
 
         // Append map container to the root element
-        this.root.appendChild(this.map);
+        this.root.appendChild(this.region);
     }
 }

@@ -1,5 +1,5 @@
 import { Page } from "./Page";
-import { MapComponent } from "../components/MapComponent";
+import { RegionComponent } from "../components/RegionComponent";
 
 export class WarehousePage extends Page {
     constructor(controller) {
@@ -15,7 +15,7 @@ export class WarehousePage extends Page {
         this.createRegionSelector();
 
         // Map
-        this.map = new MapComponent(this.controller);
+        this.region = new RegionComponent(this.controller);
     }
 
     updateRegionSelector() {
