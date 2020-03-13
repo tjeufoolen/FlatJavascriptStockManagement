@@ -1,0 +1,19 @@
+.region {
+    .region-row {
+        height: 20px;
+
+        .region-section {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+
+            &.storage {
+                border: 1px solid black;
+            }
+
+            &.passage {
+                background-color: #ececec;
+            }
+        }
+    }
+}
