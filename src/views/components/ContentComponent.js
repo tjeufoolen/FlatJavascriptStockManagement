@@ -1,6 +1,6 @@
 const { View } = require('../View');
 
-export class ContentView extends View {
+export class ContentComponent extends View {
     constructor() {
         super();
 

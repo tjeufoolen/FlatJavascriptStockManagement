@@ -1,6 +1,6 @@
 const { View } = require('../View');
 
-export class NavbarView extends View {
+export class NavbarComponent extends View {
     constructor(controller) {
         super();
 

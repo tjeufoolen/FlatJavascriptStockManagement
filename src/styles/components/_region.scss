@@ -1,0 +1,25 @@
+.region {
+    border: 1px solid #ececec;
+    border-top: 0;
+    border-radius: 0 0 $default-border-radius $default-border-radius;
+    padding: $default-spacing;
+    text-align: center;
+
+    .region-row {
+        height: 20px;
+
+        .region-section {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+
+            &.storage {
+                border: 1px solid black;
+            }
+
+            &.passage {
+                background-color: #ececec;
+            }
+        }
+    }
+}
