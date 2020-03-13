@@ -1,14 +1,24 @@
-import { ProductsPage } from '../../views/pages/ProductsPage';
-// import { CreateProductsPage } from '../../views/pages/CreateProductsPage';
-// import { CreateProductsController } from '../../controller/pages/CreateProductsController';
+import { CreateProductPage } from '../../views/pages/CreateProductPage';
 
-export class CreateProductsController {
-    constructor(productsController) {
-        this.productsController = productsController;
+export class CreateProductController {
+    constructor() {
+
     }
 
+
     draw(){
-        this.view = new ProductsPage(this);
+        this.view = new CreateProductPage(this);
+    }
+
+    validatePartOne(nameInput, descriptionInput){
+        if(nameInput.length>2 && descriptionInput.length>2){
+            this.name = nameInput;
+            this.description = descriptionInput;
+            
+            this.view.createPartTwo();
+        }
+
+
     }
 
 

@@ -21,7 +21,8 @@ export class AppController {
         this.enums = {
             "pages": {
                 WAREHOUSE: 'warehouse',
-                PRODUCTS: 'products'
+                PRODUCTS: 'products',
+                CREATE_PRODUCT: 'createProduct'
             },
             "categories": {
                 FRILLS: 'frill',
