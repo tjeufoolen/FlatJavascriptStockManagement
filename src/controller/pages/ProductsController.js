@@ -1,9 +1,10 @@
 import { ProductsPage } from '../../views/pages/ProductsPage';
 
 export class ProductsController {
-    constructor(appController) {
+    constructor(app) {
         // Set instance variables
-        this.products = appController.getData("products");
+        this.app = app;
+        this.products = this.app.storage.getData("products");
     }
 
     draw() {

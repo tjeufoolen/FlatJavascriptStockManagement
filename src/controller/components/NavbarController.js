@@ -1,16 +1,23 @@
 import { NavbarView } from '../../views/components/NavbarView';
 
 export class NavbarController {
-    constructor(appController) {
-        // Controller
-        this.appController = appController;
-        this.menuItems = appController.menuItems;
+    constructor(app) {
+        // Initialize instance variables
+        this.app = app;
+        this.menuItems = [
+            { page: this.app.constants.pages.WAREHOUSE, title: "Magazijn" },
+            { page: this.app.constants.pages.PRODUCTS, title: "Producten" },
+        ];
 
-        // View
+        // Show content
+        this.draw();
+    }
+
+    draw() {
         this.view = new NavbarView(this);
     }
 
     switchPage(page) {
-        this.appController.switchPage(page);
+        this.app.content.switchContent(page);
     }
 }

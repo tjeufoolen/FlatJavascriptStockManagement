@@ -8,8 +8,8 @@ import { Section } from "../../models/Section";
 import { StorageSection } from "../../models/StorageSection";
 
 export class JSONConverterController {
-    constructor(appController) {
-        this.appController = appController;
+    constructor(app) {
+        this.app = app;
     }
 
     convertProducts(data) {
@@ -18,13 +18,13 @@ export class JSONConverterController {
         data.forEach(p => {
             let category = null;
             switch(p.category.type) {
-                case this.appController.enums.categories.FRILLS:
+                case this.app.enums.categoryTypes.FRILLS:
                     category = new FrillCategory(p.category.weight);
                     break;
-                case this.appController.enums.categories.DECORATION:
+                case this.app.enums.categoryTypes.DECORATION:
                     category = new DecorationCategory(p.category.size, p.category.color, p.category.amount);
                     break;
-                case this.appController.enums.categories.CLOTHING:
+                case this.app.enums.categoryTypes.CLOTHING:
                     category = new ClothingCategory(p.category.color, p.category.size);
                     break;
             }
@@ -49,10 +49,10 @@ export class JSONConverterController {
                 let section = null;
 
                 switch (r.type) {
-                    case this.appController.enums.regionTypes.STORAGE:
+                    case this.app.enums.regionTypes.STORAGE:
                         section = new StorageSection(r.type, r.productId);
                         break;
-                    case this.appController.enums.regionTypes.PASSAGE:
+                    case this.app.enums.regionTypes.PASSAGE:
                         section = new Section(r.type);
                         break;
                 }
