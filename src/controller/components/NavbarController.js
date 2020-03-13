@@ -18,6 +18,6 @@ export class NavbarController {
     }
 
     switchPage(page) {
-        this.app.content.switchContent(page);
+        window.app.content.switchContent(page);
     }
 }

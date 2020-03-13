@@ -2,7 +2,7 @@ import { ProductsPage } from '../../views/pages/ProductsPage';
 
 export class ProductsController {
     constructor(app) {
-        // Set instance variables
+        // Initialize instance variables
         this.app = app;
         this.products = this.app.storage.getData("products");
     }

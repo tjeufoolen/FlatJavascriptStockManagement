@@ -47,7 +47,7 @@
             {"type": "storage", "productId": null},
             {"type": "passage"},
             {"type": "passage"},
-            {"type": "storage", "productId": null},
+            {"type": "storage", "productId": 2},
             {"type": "storage", "productId": null},
             {"type": "passage"},
             {"type": "storage", "productId": null}

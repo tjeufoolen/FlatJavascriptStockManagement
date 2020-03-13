@@ -4,7 +4,7 @@
         [
             {"type": "storage", "productId": null},
             {"type": "passage"},
-            {"type": "storage", "productId": null},
+            {"type": "storage", "productId": 1},
             {"type": "storage", "productId": null},
             {"type": "passage"},
             {"type": "storage", "productId": null},

@@ -1,17 +1,12 @@
 // Helpers
 import { JSONConverterController } from "./helpers/JSONConverterController";
 
-// Models
-import { Warehouse } from "../models/Warehouse";
-
-
 export class StorageController {
     constructor(app) {
-        // Initialize instance variables
         this.app = app;
 
         // Helpers
-        this.converter = new JSONConverterController(this.app);
+        this.converter = new JSONConverterController(this.app, this);
 
         // Load data
         this.initProducts();
@@ -31,18 +26,14 @@ export class StorageController {
 
     initWarehouse() {
         if (localStorage.getItem("warehouse") == null) {
-            let regions = {};
-
-            // Load all regions
-            var context = require.context("../storage/regions/", true, /\.json$/);
-            const converter = this.converter;
+            // Create warehouse
+            const context = require.context("../storage/regions/", true, /\.json$/);
+            const regions = [];
             context.keys().forEach(function (key) {
                 const data = context(key);
-                regions[data.name] = converter.convertSections(data.sections);
+                regions.push({"name": data.name, "sections": data.sections})
             });
-
-            // Create warehouse
-            const warehouse = new Warehouse(regions);
+            const warehouse = this.converter.convertWarehouse(regions);
             
             // Save warehouse
             this.setData("warehouse", warehouse);
@@ -50,10 +41,17 @@ export class StorageController {
     }
 
     getData(name) {
-        return this.converter.convertProducts(JSON.parse(localStorage.getItem(name)));
+        const json = JSON.parse(localStorage.getItem(name));
+
+        switch(name) {
+            case "products":
+                return this.converter.convertProducts(json);
+            case "warehouse":
+                return this.converter.convertWarehouse(json.regions);
+        }
     }
 
-    setData(name, products) {
-        localStorage.setItem(name, JSON.stringify(products));
+    setData(name, data) {
+        localStorage.setItem(name, JSON.stringify(data));
     }
 }

@@ -1,10 +1,10 @@
 import { Section } from './Section';
 
 export class StorageSection extends Section {
-    constructor(type, productId) {
+    constructor(type, product) {
         super(type);
 
         // Set instance variables
-        this.productId = productId;
+        this.product = product;
     }
 }

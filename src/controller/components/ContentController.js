@@ -5,16 +5,18 @@ import { ProductsController } from '../pages/ProductsController';
 
 export class ContentController {
     constructor(app) {
-        // Initial variables
+        // Initialize instance variables
         this.app = app;
         this.productsController = new ProductsController(this.app);
         this.warehouseController = new WarehouseController();
 
-        // View
-        this.view = new ContentView();
+        // Show content
+        this.draw();
+    }
 
-        // Set initial content
-        this.switchContent();
+    draw() {
+        this.view = new ContentView();
+        this.switchContent(); // Sets initial content
     }
 
     switchContent(page) {
