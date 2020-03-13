@@ -58,7 +58,7 @@ export class Form extends Page {
         return formRowName;
     }
 
-    createNumberField(inputId,labelName, placeholderText, invalidFeedback, isRequired){
+    createNumberField(inputId,labelName, placeholderText, invalidFeedback, isRequired, isDecimal=false){
         let formRowName = this.createElement("div", ["form-group", "row", "mt-4"]);
             
             let nameCol = this.createElement("div", ["col-sm-10"]);
@@ -70,8 +70,9 @@ export class Form extends Page {
                 input.name = inputId;
                 input.placeholder = placeholderText;
                 input.type = "Number";
-                input.step = "0.01";
+                input.min = 0;
                 if(isRequired) input.required = true;
+                if(isDecimal) input.step = "0.01";
                 
             nameCol.appendChild(feedBack);
             nameCol.appendChild(input);
@@ -98,10 +99,11 @@ export class Form extends Page {
 
                 for(let item in itemlist){
                     let option = this.createElement("option",[]);
-                    option.innerText = itemlist[item]; 
+                    option.innerText = item; 
+                    option.innerText = itemlist[item];
                     input.appendChild(option);
                 }
-
+                
                 if(isRequired) input.required = true;
                 
             nameCol.appendChild(feedBack);

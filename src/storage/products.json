@@ -8,7 +8,7 @@
         "minimalStock": 100,
         "currentStock": 210,
         "category": {
-            "type": "clothing",
+            "type": "Kleding",
             "color": "rood, geel, wit",
             "size": "regular"
         }
@@ -22,7 +22,7 @@
         "minimalStock": 50,
         "currentStock": 55,
         "category": {
-            "type": "frill",
+            "type": "Tierlantijn",
             "weight": "100g"
         }
     },
@@ -35,7 +35,7 @@
         "minimalStock": 100,
         "currentStock": 341,
         "category": {
-            "type": "decoration",
+            "type": "Decoratie",
             "color": "rood, geel, wit",
             "size": 250,
             "amount": 3
@@ -50,7 +50,7 @@
         "minimalStock": 100,
         "currentStock": 500,
         "category": {
-            "type": "frill",
+            "type": "Tierlantijn",
             "weight": "83g"
         }
     }

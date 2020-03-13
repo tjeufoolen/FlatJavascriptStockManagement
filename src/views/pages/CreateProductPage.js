@@ -7,7 +7,7 @@ export class CreateProductPage extends Form {
         super();
         
         this.createProductController = createProductController;
-        this.categoryTypes = Object.values(this.createProductController.app.enums.categoryTypes);
+        this.categoryTypes = this.createProductController.app.enums.categoryTypes;
 
         // Create heading
        this.addHeading("Product aanmaken")    
@@ -52,8 +52,8 @@ export class CreateProductPage extends Form {
             _self.createProductController.validatePartTwo(this.costPrice, this.sellPrice);            
         }
         
-        this.form.appendChild(this.createNumberField("costPrice", "Inkoop prijs", "99,99","Voer een geldige inkoop prijs in.", true));
-        this.form.appendChild(this.createNumberField("sellPrice", "Verkoop prijs (excl. BTW)", "150,00","Voer een geldige verkoop prijs in.", true));
+        this.form.appendChild(this.createNumberField("costPrice", "Inkoop prijs", "99,99","Voer een geldige inkoop prijs in.", true, true));
+        this.form.appendChild(this.createNumberField("sellPrice", "Verkoop prijs (excl. BTW)", "150,00","Voer een geldige verkoop prijs in.", true, true));
 
         this.form.appendChild(this.createSubmitButton("Volgende"));
     }
@@ -63,10 +63,48 @@ export class CreateProductPage extends Form {
         this.form.innerHTML ="";
         this.form.appendChild(this.createProgressBar(75));
 
-        this.form.appendChild(this.createSelectBox("category", "Categorie", this.categoryTypes, "Selecteer een categorie", true));
+        this.form.appendChild(this.createSelectBox("category", "Categorie", Object.values(this.categoryTypes), "Selecteer een categorie", true));
 
 
-        // switch()
+        let tempcategory = this.categoryTypes.DECORATION;
+        
+
+        let selectbox = document.querySelector("#category");
+        selectbox = this.getElement("#category")
+        selectbox = document.getElementsByName("category");
+        // selectbox = document.getElementById("category");
+
+        console.log(this.form);
+        console.log(selectbox);
+        
+        
+        this.generateCategoryBasedForm(tempcategory);
+
+        // selectbox.addEventListener("change", this.generateCategoryBasedForm(selectbox.options[selectbox.selectedIndex].text));
+
+    }
+
+
+
+    generateCategoryBasedForm(category){
+        switch(category){
+            case this.categoryTypes.FRILLS:
+                this.form.appendChild(this.createTextField("weight", "Gewicht", "100g", "Voer een products gewicht in.", true));
+                break;
+            case this.categoryTypes.DECORATION:
+                this.form.appendChild(this.createTextField("color", "Kleur", "Blauw, rood", "Voer een of meerdere kleuren in.", true));    
+                this.form.appendChild(this.createNumberField("size", "Maat", "0", "Voer een maat in.", true));
+                this.form.appendChild(this.createNumberField("amount", "Hoeveelheid in verpakking", "5", "Voer een verpakkingshoeveelheid in", true));       
+                break;
+            case this.categoryTypes.CLOTHING:
+                this.form.appendChild(this.createTextField("color", "Kleur", "Blauw, rood", "Voer een of meerdere kleuren in.", true));
+                this.form.appendChild(this.createNumberField("size", "Maat", "0", "Voer een maat in.", true));
+                break;
+
+        }
+    }
+}
+        // switch();
 
 
 
@@ -76,8 +114,7 @@ export class CreateProductPage extends Form {
         // console.log(this.costPrice);
         // console.log(this.sellPrice);
         
-    }
-}
+    
 
 
 
