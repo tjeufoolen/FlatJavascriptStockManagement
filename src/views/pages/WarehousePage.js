@@ -78,7 +78,7 @@ export class WarehousePage extends Page {
 
 
         // Create selected product container
-        let productContainer = this.createElement("div", ["selected-product"]);
+        let productContainer = this.createElement("div", ["selected-product", "mb-3"]);
         productContainer.draggable = true;
         let productName = this.createElement("h4", ["selected-product-name"]);
         let productDescription = this.createElement("p", ["selected-product-description"]);
