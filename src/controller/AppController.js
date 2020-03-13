@@ -26,9 +26,9 @@ export class AppController {
         // Set global enums
         this.enums = {
             "categoryTypes": {
-                FRILLS: 'frill',
-                DECORATION: 'decoration',
-                CLOTHING: 'clothing'
+                FRILLS: 'Tierlantijn',
+                DECORATION: 'Decoratie',
+                CLOTHING: 'Kleding'
             },
             "regionTypes": {
                 PASSAGE: 'passage',

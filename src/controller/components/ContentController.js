@@ -9,7 +9,7 @@ export class ContentController {
         this.app = app;
         this.productsController = new ProductsController(this.app);
         this.warehouseController = new WarehouseController();
-        this.createProductController = new CreateProductController();
+        this.createProductController = new CreateProductController(this.app);
 
         // Show content
         this.draw();
@@ -36,7 +36,8 @@ export class ContentController {
                 this.createProductController.draw();
                 break;
             default:
-                this.warehouseController.draw();
+                this.createProductController.draw();
+                // this.warehouseController.draw();
             break;
         }
     }

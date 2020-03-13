@@ -70,6 +70,38 @@ export class Form extends Page {
                 input.name = inputId;
                 input.placeholder = placeholderText;
                 input.type = "Number";
+                input.step = "0.01";
+                if(isRequired) input.required = true;
+                
+            nameCol.appendChild(feedBack);
+            nameCol.appendChild(input);
+
+            let nameLabel = this.createElement("label",["col-sm-2","col-form-label"]);
+            nameLabel.innerText = labelName;
+            nameLabel.htmlFor = "validationName";
+        formRowName.appendChild(nameLabel);
+        formRowName.appendChild(nameCol);
+
+        return formRowName;
+    }
+
+    createSelectBox(inputId,labelName, itemlist, invalidFeedback, isRequired){
+        let formRowName = this.createElement("div", ["form-group", "row", "mt-4"]);
+            
+            let nameCol = this.createElement("div", ["col-sm-10"]);
+                let feedBack = this.createElement("div", ["invalid-feedback"]);
+                feedBack.innerText = invalidFeedback;
+
+                let input = this.createElement("select", ["form-control"]);
+                input.id = inputId;
+                input.name = inputId;
+
+                for(let item in itemlist){
+                    let option = this.createElement("option",[]);
+                    option.innerText = itemlist[item]; 
+                    input.appendChild(option);
+                }
+
                 if(isRequired) input.required = true;
                 
             nameCol.appendChild(feedBack);
@@ -85,7 +117,7 @@ export class Form extends Page {
     }
 
 
-    createSubmitButton(buttonText, buttonAction){
+    createSubmitButton(buttonText){
          let formRowButton = this.createElement("div", ["form-group", "row", "justify-content-end"]);
              let button = this.createElement("button",["btn", "btn-primary"]);
              button.type="submit";
@@ -106,21 +138,25 @@ export class Form extends Page {
         return progress;
     }
 
-    validateForm(){
-        'use strict';
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-            });
-        }, false);
-    }
+    
+
+
+
+    // validateForm(){
+    //     'use strict';
+    //     window.addEventListener('load', function() {
+    //         // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    //         var forms = document.getElementsByClassName('needs-validation');
+    //         // Loop over them and prevent submission
+    //         var validation = Array.prototype.filter.call(forms, function(form) {
+    //         form.addEventListener('submit', function(event) {
+    //             if (form.checkValidity() === false) {
+    //             event.preventDefault();
+    //             event.stopPropagation();
+    //             }
+    //             form.classList.add('was-validated');
+    //         }, false);
+    //         });
+    //     }, false);
+    // }
 }
