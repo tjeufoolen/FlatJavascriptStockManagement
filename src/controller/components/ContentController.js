@@ -1,4 +1,4 @@
-import { ContentView } from '../../views/components/ContentView';
+import { ContentComponent } from '../../views/components/ContentComponent';
 
 import { WarehouseController } from '../pages/WarehouseController';
 import { ProductsController } from '../pages/ProductsController';
@@ -6,16 +6,16 @@ import { ProductsController } from '../pages/ProductsController';
 export class ContentController {
     constructor(app) {
         // Initialize instance variables
+        this.productsController = new ProductsController(app);
+        this.warehouseController = new WarehouseController(app);
         this.app = app;
-        this.productsController = new ProductsController(this.app);
-        this.warehouseController = new WarehouseController();
 
         // Show content
         this.draw();
     }
 
     draw() {
-        this.view = new ContentView();
+        this.view = new ContentComponent();
         this.switchContent(); // Sets initial content
     }
 

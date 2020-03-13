@@ -1,4 +1,4 @@
-import { NavbarView } from '../../views/components/NavbarView';
+import { NavbarComponent } from '../../views/components/NavbarComponent';
 
 export class NavbarController {
     constructor(app) {
@@ -14,7 +14,7 @@ export class NavbarController {
     }
 
     draw() {
-        this.view = new NavbarView(this);
+        this.view = new NavbarComponent(this);
     }
 
     switchPage(page) {
