@@ -4,17 +4,19 @@ import { WarehouseController } from '../pages/WarehouseController';
 import { ProductsController } from '../pages/ProductsController';
 
 export class ContentController {
-    constructor(appController) {
-        // Initial variables
-        this.appController = appController;
-        this.productsController = new ProductsController(this.appController);
+    constructor(app) {
+        // Initialize instance variables
+        this.app = app;
+        this.productsController = new ProductsController(this.app);
         this.warehouseController = new WarehouseController();
 
-        // View
-        this.view = new ContentView();
+        // Show content
+        this.draw();
+    }
 
-        // Set initial content
-        this.switchContent();
+    draw() {
+        this.view = new ContentView();
+        this.switchContent(); // Sets initial content
     }
 
     switchContent(page) {
@@ -23,10 +25,10 @@ export class ContentController {
 
         // Set new page
         switch(page) {
-            case this.appController.enums.pages.PRODUCTS:
+            case this.app.constants.pages.PRODUCTS:
                 this.productsController.draw();
                 break;
-            case this.appController.enums.pages.WAREHOUSE:
+            case this.app.constants.pages.WAREHOUSE:
             default:
                 this.warehouseController.draw();
             break;

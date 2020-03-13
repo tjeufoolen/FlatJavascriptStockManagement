@@ -1,8 +1,8 @@
 import { Category } from './Category';
 
 export class ClothingCategory extends Category {
-    constructor(color, size) {
-        super();
+    constructor(type, color, size) {
+        super(type);
 
         // Set instance variables
         this.color = color;

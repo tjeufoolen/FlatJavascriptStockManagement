@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "name": "Oeteldonk sjaal",
         "description": "Met deze sjaal gaat u warm en stijlvol naar oeteldonk!",
         "costPrice": 2.50,
@@ -13,6 +14,7 @@
         }
     },
     {
+        "id": 2,
         "name": "Roze strikje",
         "description": "Auwwwww wat lief!",
         "costPrice": 0.50,
@@ -25,6 +27,7 @@
         }
     },
     {
+        "id": 3,
         "name": "Oeteldonk slingers",
         "description": "Nog niet uitgefeest? Koop nu de oeteldonk slingers en vier thuis lekker verder!",
         "costPrice": 2.00,
@@ -39,6 +42,7 @@
         }
     },
     {
+        "id": 4,
         "name": "Serpentine spray",
         "description": "Ook al is het verboden, wij verkopen het toch!",
         "costPrice": 0.50,
