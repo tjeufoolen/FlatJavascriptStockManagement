@@ -3,7 +3,7 @@ import { ProductsPage } from '../../views/pages/ProductsPage';
 export class ProductsController {
     constructor(appController) {
         // Set instance variables
-        this.products = appController.getProducts();
+        this.products = appController.getData("products");
     }
 
     draw() {

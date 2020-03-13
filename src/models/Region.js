@@ -1,6 +1,6 @@
-class Region {
-    constructor(products, category) {
-        this.products = products;
-        this.category = category;
+export class Region {
+    constructor(name, sections) {
+        this.name = name;
+        this.sections = sections;
     }
 }

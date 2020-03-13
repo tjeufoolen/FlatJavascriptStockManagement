@@ -3,6 +3,8 @@ import { ContentController } from "./components/ContentController";
 
 import { JSONConverterController } from "./helpers/JSONConverterController";
 
+import { Warehouse } from "../models/Warehouse";
+
 export class AppController {
     constructor() {
         // Helpers
@@ -27,6 +29,10 @@ export class AppController {
                 FRILLS: 'frill',
                 DECORATION: 'decoration',
                 CLOTHING: 'clothing'
+            },
+            "regionTypes": {
+                PASSAGE: 'passage',
+                STORAGE: 'storage'
             }
         };
 
@@ -36,21 +42,45 @@ export class AppController {
             { page: this.enums.pages.PRODUCTS, title: "Producten" },
         ]
 
-        // Save products to localstorage (if not already present)
-        if (localStorage.getItem("products") == null) {
-            const data = require('../storage/products.json');
-            const products = this.jsonConverter.convertJSON(data);
+        // Save data to localstorage (if not already present)
+        this.initData();
+    }
 
-            this.setProducts(products);
+    initData() {
+        if (localStorage.getItem("products") == null) {
+            // Create products
+            const data = require('../storage/products.json');
+            const products = this.jsonConverter.convertProducts(data);
+
+            // Save products
+            this.setData("products", products);
+        }
+
+        if (localStorage.getItem("warehouse") == null) {
+            let regions = {};
+
+            // Load all regions
+            var context = require.context("../storage/regions/", true, /\.json$/);
+            const converter = this.jsonConverter;
+            context.keys().forEach(function (key) {
+                const data = context(key);
+                regions[data.name] = converter.convertSections(data.sections);
+            });
+
+            // Create warehouse
+            const warehouse = new Warehouse(regions);
+            
+            // Save warehouse
+            this.setData("warehouse", warehouse);
         }
     }
 
-    getProducts() {
-        return this.jsonConverter.convertJSON(JSON.parse(localStorage.getItem("products")));
+    getData(name) {
+        return this.jsonConverter.convertProducts(JSON.parse(localStorage.getItem(name)));
     }
 
-    setProducts(products) {
-        localStorage.setItem("products", JSON.stringify(products));
+    setData(name, products) {
+        localStorage.setItem(name, JSON.stringify(products));
     }
 
     switchPage(page) {
