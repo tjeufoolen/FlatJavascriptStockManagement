@@ -68,19 +68,12 @@ export class CreateProductPage extends Form {
 
         let tempcategory = this.categoryTypes.DECORATION;
         
+        let selectbox = this.form.querySelector("#category")
 
-        let selectbox = document.querySelector("#category");
-        selectbox = this.getElement("#category")
-        selectbox = document.getElementsByName("category");
-        // selectbox = document.getElementById("category");
-
-        console.log(this.form);
-        console.log(selectbox);
-        
-        
+            
         this.generateCategoryBasedForm(tempcategory);
 
-        // selectbox.addEventListener("change", this.generateCategoryBasedForm(selectbox.options[selectbox.selectedIndex].text));
+        selectbox.addEventListener("change", this.generateCategoryBasedForm(selectbox.options[selectbox.selectedIndex].text));
 
     }
 
