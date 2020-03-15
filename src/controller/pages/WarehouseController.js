@@ -6,6 +6,7 @@ export class WarehouseController {
         this.app = app;
         this.warehouse = this.app.storage.getData("warehouse");
         this.selectedRegion = this.warehouse.regions[0];
+        this.products = this.app.storage.getData("products").filter(p => p.category.type == this.selectedRegion.category);
     }
 
     draw() {
@@ -14,7 +15,7 @@ export class WarehouseController {
 
     switchRegion(name) {
         this.selectedRegion = this.warehouse.regions.find(r => r.name == name);
-        this.view.region.updateMap();
-        this.view.updateRegionSelector();
+        this.products = this.app.storage.getData("products").filter(p => p.category.type == this.selectedRegion.category);
+        this.view.update();
     }
 }

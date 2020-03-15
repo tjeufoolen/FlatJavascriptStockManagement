@@ -58,7 +58,7 @@ export class JSONConverterController {
         let regions = [];
 
         data.forEach(r => {
-            regions.push(new Region(r.name, this.convertSections(r.sections)));
+            regions.push(new Region(r.name, r.category, this.convertSections(r.sections)));
         });
         
         return new Warehouse(regions);
