@@ -29,5 +29,9 @@ export class CreateProductController {
         }
     }
 
+    validatePartThree(category, data){
+        
+    }
+
 
 }

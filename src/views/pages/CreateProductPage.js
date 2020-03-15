@@ -17,16 +17,24 @@ export class CreateProductPage extends Form {
         
         // this.createPartTwo();
 
-        this.createPartThree();
+        
+
+        // this.createPartThree();
 
         this.addElementToRoot(this.form);
+
+        this.createPartThree();
+
+        // this.addElementToRoot(this.form);
     }
 
     createPartOne(){
+        //prepare an empty content area
         let _self = this;
         this.form.innerHTML ="";
         this.form.appendChild(this.createProgressBar(25));
 
+        //change the submit of the current form
         this.form.onsubmit = (event) => {
             event.preventDefault();
             this.name = _self.getElement("#name").value;
@@ -34,17 +42,19 @@ export class CreateProductPage extends Form {
             _self.createProductController.validatePartOne(this.name, this.description);            
         }
 
-
+        //add all the input fields to the form
         this.form.appendChild(this.createTextField("name", "Naam", "Oeteldonksjaal", "Vul een geldige artikel naam in.", true));
         this.form.appendChild(this.createTextArea("description", "Omschrijving", "Met deze sjaal blijft u heerlijk warm", "Vul een geldige beschrijving in", true));
         this.form.appendChild(this.createSubmitButton("Volgende"));
     }
 
     createPartTwo(){
+        //prepare an empty content area
         let _self = this;
         this.form.innerHTML ="";
         this.form.appendChild(this.createProgressBar(50));
 
+        //change the submit of the current form
         this.form.onsubmit = (event) => {
             event.preventDefault();
             this.costPrice = _self.getElement("#costPrice").value;
@@ -52,46 +62,57 @@ export class CreateProductPage extends Form {
             _self.createProductController.validatePartTwo(this.costPrice, this.sellPrice);            
         }
         
+        //add all the input fields to the form
         this.form.appendChild(this.createNumberField("costPrice", "Inkoop prijs", "99,99","Voer een geldige inkoop prijs in.", true, true));
         this.form.appendChild(this.createNumberField("sellPrice", "Verkoop prijs (excl. BTW)", "150,00","Voer een geldige verkoop prijs in.", true, true));
-
         this.form.appendChild(this.createSubmitButton("Volgende"));
     }
 
     createPartThree(){
+        //prepare an empty content area
         let _self = this;
         this.form.innerHTML ="";
         this.form.appendChild(this.createProgressBar(75));
 
+        //change the submit of the current form
+        this.form.onsubmit = (event) => {
+            // event.preventDefault();
+            // this.costPrice = _self.getElement("#costPrice").value;
+            // this.sellPrice = _self.getElement("#sellPrice").value;
+            // _self.createProductController.validatePartTwo(this.costPrice, this.sellPrice);            
+        }
+
         this.form.appendChild(this.createSelectBox("category", "Categorie", Object.values(this.categoryTypes), "Selecteer een categorie", true));
+        let selectbox = this.getElement("#category");
+        selectbox.addEventListener("change", ()=>{
+            this.generateCategoryBasedForm(selectbox.options[selectbox.selectedIndex].text);   
+        });
 
+        let categoryContent = this.createElement("div",[]);
+        categoryContent.id = "categoryContent";
+        this.form.appendChild(categoryContent);
 
-        let tempcategory = this.categoryTypes.DECORATION;
-        
-        let selectbox = this.form.querySelector("#category")
-
-            
-        this.generateCategoryBasedForm(tempcategory);
-
-        selectbox.addEventListener("change", this.generateCategoryBasedForm(selectbox.options[selectbox.selectedIndex].text));
 
     }
 
 
 
     generateCategoryBasedForm(category){
+        let contentArea = this.getElement("#categoryContent");
+        contentArea.innerHTML = "";
+
         switch(category){
             case this.categoryTypes.FRILLS:
-                this.form.appendChild(this.createTextField("weight", "Gewicht", "100g", "Voer een products gewicht in.", true));
+                contentArea.appendChild(this.createTextField("weight", "Gewicht", "100g", "Voer een products gewicht in.", true));
                 break;
             case this.categoryTypes.DECORATION:
-                this.form.appendChild(this.createTextField("color", "Kleur", "Blauw, rood", "Voer een of meerdere kleuren in.", true));    
-                this.form.appendChild(this.createNumberField("size", "Maat", "0", "Voer een maat in.", true));
-                this.form.appendChild(this.createNumberField("amount", "Hoeveelheid in verpakking", "5", "Voer een verpakkingshoeveelheid in", true));       
+                contentArea.appendChild(this.createTextField("color", "Kleur", "Blauw, rood", "Voer een of meerdere kleuren in.", true));    
+                contentArea.appendChild(this.createNumberField("size", "Maat", "0", "Voer een maat in.", true));
+                contentArea.appendChild(this.createNumberField("amount", "Hoeveelheid in verpakking", "5", "Voer een verpakkingshoeveelheid in", true));       
                 break;
             case this.categoryTypes.CLOTHING:
-                this.form.appendChild(this.createTextField("color", "Kleur", "Blauw, rood", "Voer een of meerdere kleuren in.", true));
-                this.form.appendChild(this.createNumberField("size", "Maat", "0", "Voer een maat in.", true));
+                contentArea.appendChild(this.createTextField("color", "Kleur", "Blauw, rood", "Voer een of meerdere kleuren in.", true));
+                contentArea.appendChild(this.createNumberField("size", "Maat", "0", "Voer een maat in.", true));
                 break;
 
         }
