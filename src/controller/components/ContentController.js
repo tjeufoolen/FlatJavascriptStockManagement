@@ -37,8 +37,7 @@ export class ContentController {
                 this.createProductController.draw();
                 break;
             default:
-                this.createProductController.draw();
-                // this.warehouseController.draw();
+                this.warehouseController.draw();
             break;
         }
     }
