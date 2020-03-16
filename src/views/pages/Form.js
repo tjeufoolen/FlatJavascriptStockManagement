@@ -3,7 +3,6 @@ const { Page } = require('./Page');
 export class Form extends Page {
     constructor() {
         super();
-        
     }
 
     createTextField(inputId,labelName, placeholderText, invalidFeedback, isRequired=true){
@@ -22,7 +21,6 @@ export class Form extends Page {
                 
             nameCol.appendChild(input);
             nameCol.appendChild(feedBack);
-            
 
             let nameLabel = this.createElement("label",["col-sm-2","col-form-label"]);
             nameLabel.innerText = labelName;
@@ -46,14 +44,14 @@ export class Form extends Page {
                 input.name = inputId;
                 input.placeholder = placeholderText;
                 if(isRequired) input.required = true;
-                
+
             nameCol.appendChild(input);
             nameCol.appendChild(feedBack);
             
-
             let nameLabel = this.createElement("label",["col-sm-2","col-form-label"]);
             nameLabel.innerText = labelName;
             nameLabel.htmlFor = inputId;
+
         formRowName.appendChild(nameLabel);
         formRowName.appendChild(nameCol);
 
@@ -83,6 +81,7 @@ export class Form extends Page {
             let nameLabel = this.createElement("label",["col-sm-2","col-form-label"]);
             nameLabel.innerText = labelName;
             nameLabel.htmlFor = inputId;
+
         formRowName.appendChild(nameLabel);
         formRowName.appendChild(nameCol);
 

@@ -14,6 +14,7 @@ export class CreateProductPage extends Form {
         this.form = this.createElement("form", ["needs-validation","mt-4"]);
         this.form.noValidate = true;
     
+        //start the first part of the form
         this.createPartOne();
 
         this.addElementToRoot(this.form);
@@ -162,13 +163,7 @@ export class CreateProductPage extends Form {
                 contentArea.appendChild(this.createTextField("color", "Kleur", "Blauw, rood", "Voer een of meerdere kleuren in.", true));
                 contentArea.appendChild(this.createNumberField("size", "Maat", "0", "Voer een maat in.", true));
                 break;
-
         }
-        
-    }
-
-    showFinalOutcome(){
-        
     }
 
     loadValidation(){

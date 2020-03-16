@@ -11,7 +11,6 @@ export class CreateProductController {
         this.storageController = this.app.storage;
     }
 
-
     draw(){
         this.view = new CreateProductPage(this);
     }
@@ -38,9 +37,7 @@ export class CreateProductController {
     }
 
     validatePartThree(minimalStock, currentStock){
-        
-        if(minimalStock.length>0 && currentStock.length>0){
-            
+        if(minimalStock.length>0 && currentStock.length>0){          
             this.minimalStock = parseFloat(minimalStock);
             this.currentStock = parseFloat(currentStock);
     
@@ -80,8 +77,7 @@ export class CreateProductController {
 
         this.storageController.addProduct(product);
 
-        this.app.content.switchContent(this.app.constants.pages.PRODUCTS);
-        
+        this.app.content.switchContent(this.app.constants.pages.PRODUCTS);    
     }
 
 
