@@ -10,7 +10,19 @@ export class Product {
         this.category = category;
     }
 
+    getCostPrice() {
+        return this.formatPrice(this.costPrice);
+    }
+
+    getSellPrice() {
+        return this.formatPrice(this.sellPrice);
+    }
+
     getSellPriceWithBTW() {
-        return this.sellPrice * 1.21;
+        return this.formatPrice(this.sellPrice * 1.21);
+    }
+
+    formatPrice(price) {
+        return new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' }).format(price);
     }
 }
