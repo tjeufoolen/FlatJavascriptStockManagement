@@ -72,6 +72,13 @@ export class RegionComponent extends View {
             
             row.forEach((s, x) => {
                 let regionSection = _self.createElement("div", ["region-section", s.type]);
+
+                // Check if section has product, if so.. draw it.
+                if (s.product != null) {
+                    let regionProduct = _self.createElement("div", ["region-product"]);
+                    regionSection.appendChild(regionProduct);
+                }
+
                 regionRow.appendChild(regionSection);
             });
 

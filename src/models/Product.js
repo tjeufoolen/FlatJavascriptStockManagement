@@ -10,7 +10,7 @@ export class Product {
         this.category = category;
     }
 
-    getSellPriceWithTax() {
+    getSellPriceWithBTW() {
         return this.sellPrice * 1.21;
     }
 }
