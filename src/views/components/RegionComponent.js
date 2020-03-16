@@ -79,7 +79,7 @@ export class RegionComponent extends View {
     createHoverableProductCardInfo() {
         // Create product card container
         this.productCard = this.createElement("div", ["product-info-card"]);
-        
+
         // Product information
         const productName = this.createElement("h3", ["product-name"]);
         const productDescription = this.createElement("p", ["product-description"]);
@@ -125,14 +125,38 @@ export class RegionComponent extends View {
         productStock.appendChild(productStockValue);
         productAttributes.appendChild(productStock);
 
-
         // Add product information to product card
         this.productCard.appendChild(productName);
         this.productCard.appendChild(productDescription);
         this.productCard.appendChild(productAttributes);
 
+        // Create and add remove from warehouse button
+        let removeFromWarehouseButton = this.createElement("button", ["btn", "btn-secondary"]);
+        removeFromWarehouseButton.innerText = "Locatie verwijderen";
+        removeFromWarehouseButton.onclick = () => this.removeProductFromWarehouse();
+        this.productCard.appendChild(removeFromWarehouseButton);
+
         // Append product card to root element
         this.root.appendChild(this.productCard);
+    }
+
+    removeProductFromWarehouse() {
+        const productId = this.controller.selectedProductId;
+
+        // Update front-end
+        const elem = document.querySelector(`.region-product[data-productid='${productId}']`);
+        const row = elem.parentElement.dataset.row;
+        const column = elem.parentElement.dataset.column;
+
+        // Save product
+        this.controller.warehouseController.updateProductLocation(null, row, column);
+
+        // Cleanup
+        elem.remove();
+        this.hideCard();
+
+        // Update selector
+        this.controller.warehouseController.update();
     }
 
     generateRegion() {

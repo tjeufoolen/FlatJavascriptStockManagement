@@ -59,5 +59,4 @@ export class WarehouseController {
         this.products = this.getNonPlacedProductsByCategoryType();
         this.view.update();
     }
-    
 }
