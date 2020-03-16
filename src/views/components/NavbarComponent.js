@@ -16,7 +16,7 @@ export class NavbarComponent extends View {
         // The main link/logo
         this.link = this.createElement("a", ["navbar-brand"]);
         this.link.innerText = process.env.SITE_NAME;
-        this.link.href = "/";
+        this.link.onclick = () => controller.app.content.switchContent();
         
         // The mobile hamburger menu
         this.hamburgerBtn = this.createElement("button", ["navbar-toggler"]);
@@ -33,7 +33,7 @@ export class NavbarComponent extends View {
         this.navbarMenuList = this.createElement("div", ["navbar-nav"]);
         controller.menuItems.forEach(item => {
             let menuItem = this.createElement("span", ["nav-item", "nav-link"]);
-            menuItem.onclick = () => controller.switchPage(item.page);
+            menuItem.onclick = () => controller.app.content.switchContent(item.page);
             menuItem.innerText = item.title;
             this.navbarMenuList.appendChild(menuItem);
         })

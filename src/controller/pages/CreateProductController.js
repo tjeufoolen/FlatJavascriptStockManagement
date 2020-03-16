@@ -26,14 +26,16 @@ export class CreateProductController {
     
     validatePartTwo(costPrice, sellPrice){
         if(costPrice.length>0 && sellPrice.length>0){
-            if(costPrice<sellPrice){
+            if(parseFloat(costPrice)<parseFloat(sellPrice)){
                 this.costPrice = parseFloat(costPrice);
                 this.sellPrice = parseFloat(sellPrice);
     
                 this.view.createPartThree();
             }
+            else {
+                this.view.createPartTwo();
+            }
         }
-
     }
 
     validatePartThree(minimalStock, currentStock){
@@ -43,7 +45,6 @@ export class CreateProductController {
     
             this.view.createPartFour();
         }
-
     }
 
     validatePartFour(category, data){
@@ -79,6 +80,4 @@ export class CreateProductController {
 
         this.app.content.switchContent(this.app.constants.pages.PRODUCTS);    
     }
-
-
 }

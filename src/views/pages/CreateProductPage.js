@@ -63,6 +63,25 @@ export class CreateProductPage extends Form {
             _self.createProductController.validatePartTwo(this.costPrice, this.sellPrice);            
         }
 
+        this.getElement("#sellPrice").addEventListener("input", () => {
+            this.costPrice = parseFloat(_self.getElement("#costPrice").value);
+            this.sellPrice = parseFloat(_self.getElement("#sellPrice").value);
+
+            console.log('got here');
+
+
+            if(this.costPrice<this.sellPrice){
+                this.getElement("#sellPrice").classList.remove('is-invalid'); 
+                this.getElement("#sellPrice").classList.add('is-valid');
+                this.form.classList.add("was-validated");
+            } 
+            else{
+                this.getElement("#sellPrice").classList.remove('is-valid'); 
+                this.getElement("#sellPrice").classList.add('is-invalid');
+                this.form.classList.remove("was-validated");
+            } 
+        });
+
         this.loadValidation();
     }
 
