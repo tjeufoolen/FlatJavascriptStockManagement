@@ -15,6 +15,7 @@ export class WarehouseController {
 
     draw() {
         this.view = new WarehousePage(this, this.regionController);
+        this.update();
     }
 
     switchRegion(name) {
@@ -25,7 +26,7 @@ export class WarehouseController {
 
     getNonPlacedProductsByCategoryType() {
         return this.app.storage.getData("products").filter(p => {
-            if (p.category.type == this.regionController.selectedRegion.category) {
+            if (p.category.type == this.regionController.selectedRegion.name) {
 
                 // Check if product has already been placed
                 let hasBeenPlaced = false;

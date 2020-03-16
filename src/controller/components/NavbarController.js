@@ -16,8 +16,4 @@ export class NavbarController {
     draw() {
         this.view = new NavbarComponent(this);
     }
-
-    switchPage(page) {
-        window.app.content.switchContent(page);
-    }
 }

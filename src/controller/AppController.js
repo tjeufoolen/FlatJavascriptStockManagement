@@ -18,16 +18,17 @@ export class AppController {
         this.constants = {
             "pages": {
                 WAREHOUSE: 'warehouse',
-                PRODUCTS: 'products'
+                PRODUCTS: 'products',
+                CREATE_PRODUCT: 'createProduct'
             }
         }
 
         // Set global enums
         this.enums = {
             "categoryTypes": {
-                FRILLS: 'frill',
-                DECORATION: 'decoration',
-                CLOTHING: 'clothing'
+                FRILLS: 'Tierlantijn',
+                DECORATION: 'Decoratie',
+                CLOTHING: 'Kleding'
             },
             "regionTypes": {
                 PASSAGE: 'passage',

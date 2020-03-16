@@ -4,14 +4,15 @@ export class ProductsController {
     constructor(app) {
         // Initialize instance variables
         this.app = app;
-        this.products = this.app.storage.getData("products");
     }
 
     draw() {
+        this.products = this.app.storage.getData("products");           
         this.view = new ProductsPage(this);
+        
     }
 
-    createProduct() {
-        console.log("CREATE PRODUCT");
+    createProduct(){
+        this.app.content.switchContent(this.app.constants.pages.CREATE_PRODUCT);
     }
 }

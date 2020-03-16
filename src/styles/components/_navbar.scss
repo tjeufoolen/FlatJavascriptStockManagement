@@ -1,5 +1,6 @@
 .navbar {
-    .nav-item {
+    .nav-item,
+    .navbar-brand {
         &:hover {
             cursor: pointer;
         }
