@@ -21,7 +21,7 @@ export class ProductsPage extends Page {
     }
 
     createTable() {
-        this.table = this.createElement("table", ["table", "mt-3"]);
+        this.table = this.createElement("table", ["table", "table-responsive", "mt-3"]);
 
         // Create table heading
         this.thead = this.createElement("thead", ["thead-light"]);
