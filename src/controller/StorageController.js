@@ -5,6 +5,11 @@ export class StorageController {
     constructor(app) {
         this.app = app;
 
+        this.productsSynched = false;
+        this.warehouseSynched = false;
+        this.productCache = null;
+        this.warehouseCache = null;
+
         // Helpers
         this.converter = new JSONConverterController(this.app, this);
 
@@ -41,17 +46,40 @@ export class StorageController {
     }
 
     getData(name) {
-        const json = JSON.parse(localStorage.getItem(name));
-
-        switch(name) {
+        switch(name){
             case "products":
-                return this.converter.convertProducts(json);
+                if(this.productsSynched) return this.productCache;
+                else {
+                    const json = JSON.parse(localStorage.getItem(name));
+                    this.productCache = this.converter.convertProducts(json);
+                    this.productsSynched = true;
+                    return this.productCache;
+                }
+            
             case "warehouse":
-                return this.converter.convertWarehouse(json.regions);
+                if(this.warehouseSynched) return this.warehouseCache;
+                else {
+                    const json = JSON.parse(localStorage.getItem(name));
+                    this.warehouseCache = this.converter.convertWarehouse(json.regions);
+                    this.warehouseSynched = true;
+                    return this.warehouseCache;
+                }
         }
     }
-
+      
     setData(name, data) {
         localStorage.setItem(name, JSON.stringify(data));
+    }
+      
+    getNewProductId(){
+        let data = this.getData("products");
+        return data.reduce((max, p) => p.id > max ? p.id : max, data[0].id)+1;
+    }
+      
+    addProduct(product){
+        let data = this.getData("products");
+        data.push(product);
+        this.setData("products", data);
+        this.productsSynched = false;
     }
 }

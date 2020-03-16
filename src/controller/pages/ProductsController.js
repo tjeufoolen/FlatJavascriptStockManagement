@@ -4,11 +4,12 @@ export class ProductsController {
     constructor(app) {
         // Initialize instance variables
         this.app = app;
-        this.products = this.app.storage.getData("products");
     }
 
-    draw() {        
+    draw() {
+        this.products = this.app.storage.getData("products");           
         this.view = new ProductsPage(this);
+        
     }
 
     createProduct(){
