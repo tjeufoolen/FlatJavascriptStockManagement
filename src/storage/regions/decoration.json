@@ -170,7 +170,7 @@
             {"type": "storage", "productId": null},
             {"type": "storage", "productId": null},
             {"type": "storage", "productId": null},
-            {"type": "storage", "3": null}
+            {"type": "storage", "productId": 3}
         ],
         [
             {"type": "passage"},
