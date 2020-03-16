@@ -1,6 +1,7 @@
 const { View } = require('../View');
 
 export class RegionComponent extends View {
+
     constructor(controller, root) {
         super();
 
@@ -142,6 +143,8 @@ export class RegionComponent extends View {
             
             row.forEach((s, x) => {
                 let regionSection = _self.createElement("div", ["region-section", s.type]);
+                regionSection.dataset.row = y;
+                regionSection.dataset.column = x;
 
                 // Check if section has product, if so.. draw it.
                 if (s.product != null) {
@@ -151,6 +154,12 @@ export class RegionComponent extends View {
 
                     regionSection.appendChild(regionProduct);
                 } else {
+                    if (s.type == this.controller.warehouseController.app.enums.regionTypes.STORAGE) {
+                        regionSection.addEventListener('dragover', this.productDragOver);
+                        regionSection.addEventListener('dragleave', this.productDragLeave);
+                        regionSection.addEventListener('drop', (e) => this.productDragDrop(e));
+                    }
+
                     regionSection.onclick = () => this.hideCard();
                 }
 
@@ -162,6 +171,35 @@ export class RegionComponent extends View {
 
         // Append map container to the root element
         this.root.appendChild(this.region);
+    }
+
+    productDragOver(e) {
+        e.preventDefault();
+        this.classList.add("hovered");
+    }
+
+    productDragLeave() {
+        this.classList.remove("hovered");
+    }
+
+    productDragDrop(e) {
+        // Update front-end
+        const target = e.toElement;
+        target.classList.remove("hovered");
+
+        const product = this.controller.warehouseController.selectedProduct;
+        let elem = this.createElement("div", ["region-product"]);
+        elem.dataset.productid = product.id;
+        target.appendChild(elem);
+        target.onclick = () => this.toggleProductInfo(elem);
+
+        // Save product
+        const row = target.dataset.row;
+        const column = target.dataset.column;
+        this.controller.warehouseController.updateProductLocation(product, row, column);
+
+        // Update selector
+        this.controller.warehouseController.update();
     }
 
     toggleProductInfo(product) {

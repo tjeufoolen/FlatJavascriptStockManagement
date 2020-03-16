@@ -17,12 +17,16 @@ $sectionSize: 25px;
             
             &.storage {
                 border: 1px solid black;
+
+                &.hovered {
+                    background-color: $primary-color;
+                }    
             }
             
             &.passage {
                 background-color: #ececec;
             }
-            
+
             .region-product {
                 background-color: #333333;
                 width: 100%;

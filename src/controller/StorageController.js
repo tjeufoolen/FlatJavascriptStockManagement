@@ -82,4 +82,9 @@ export class StorageController {
         this.setData("products", data);
         this.productsSynched = false;
     }
+
+    updateProductLocation(warehouse) {
+        this.setData("warehouse", warehouse);
+        this.warehouseSynched = false;
+    }
 }

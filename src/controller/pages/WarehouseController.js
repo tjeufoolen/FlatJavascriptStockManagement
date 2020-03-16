@@ -10,6 +10,7 @@ export class WarehouseController {
         
         // Local data
         this.products = this.getNonPlacedProductsByCategoryType();
+        this.selectedProduct = null;
     }
 
     draw() {
@@ -31,15 +32,31 @@ export class WarehouseController {
                 this.regionController.selectedRegion.sections.forEach(r => {
                     r.forEach(s => {
                         if (s.type == "storage" && s.product != null) {
-                            if (s.product.id != p.id) hasBeenPlaced = true;
+                            if (s.product.id == p.id) hasBeenPlaced = true;
                             return;
                         }
                     });
                 });
 
                 // If not placed, than add it to the list
-                return hasBeenPlaced;
+                return !hasBeenPlaced;
             }
         });
     }
+
+    updateProductLocation(product, row, column) {
+        this.warehouse
+            .regions
+            .find(r => r.name == this.regionController.selectedRegion.name)
+            .sections[row][column]
+            .product = product;
+        
+        this.app.storage.updateProductLocation(this.warehouse);
+    }
+
+    update() {
+        this.products = this.getNonPlacedProductsByCategoryType();
+        this.view.update();
+    }
+    
 }
