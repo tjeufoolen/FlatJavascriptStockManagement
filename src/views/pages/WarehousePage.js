@@ -61,20 +61,26 @@ export class WarehousePage extends Page {
     }
 
     resetSelectedProduct() {
+        this.controller.selectedProduct = null;
+
         const elem = this.getElement(".selected-product");
         elem.querySelector(".selected-product-name").innerText = "";
         elem.querySelector(".selected-product-description").innerText = "";
+        
         const attributes = elem.querySelector(".selected-product-attributes");
         attributes.querySelector(".selected-product-cost-price").innerText = "";
         attributes.querySelector(".selected-product-sell-price").innerText = "";
         attributes.querySelector(".selected-product-sell-price-btw").innerText = "";
         attributes.querySelector(".selected-product-minimal-stock").innerText = "";
         attributes.querySelector(".selected-product-stock").innerText = "";
+        
         this.getElement(".selected-product").draggable = false;
     }
 
     selectProduct(name) {
         const product = this.controller.products.find(p => p.name == name);
+        this.controller.selectedProduct = product; 
+        
         const elem = this.getElement(".selected-product");
 
         // Set data
@@ -120,6 +126,8 @@ export class WarehousePage extends Page {
 
         let productContainer = this.createElement("div", ["selected-product", "mb-3"]);
         productContainer.draggable = false;
+        productContainer.addEventListener('dragstart', this.dragStart)
+        productContainer.addEventListener('dragend', this.dragEnd);
         let productName = this.createElement("h4", ["selected-product-name"]);
         let productDescription = this.createElement("p", ["selected-product-description"]);
         let productAttributes = this.createElement("table", ["selected-product-attributes"]);
@@ -173,5 +181,13 @@ export class WarehousePage extends Page {
 
         // Append selector to root element
         root.appendChild(elem);
+    }
+
+    dragStart() {
+        setTimeout(() => this.classList.add('invisible'), 0);
+    }
+
+    dragEnd() {
+        this.classList.remove('invisible');
     }
 }

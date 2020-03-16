@@ -54,4 +54,8 @@ export class StorageController {
     setData(name, data) {
         localStorage.setItem(name, JSON.stringify(data));
     }
+
+    updateProductLocation(warehouse) {
+        this.setData("warehouse", warehouse);
+    }
 }
