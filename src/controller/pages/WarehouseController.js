@@ -9,7 +9,7 @@ export class WarehouseController {
         this.regionController = new RegionController(this);
         
         // Local data
-        this.products = this.getNonPlaceProductsByCategoryType();
+        this.products = this.getNonPlacedProductsByCategoryType();
     }
 
     draw() {
@@ -18,11 +18,11 @@ export class WarehouseController {
 
     switchRegion(name) {
         this.regionController.switchRegion(name);
-        this.products = this.getNonPlaceProductsByCategoryType();
+        this.products = this.getNonPlacedProductsByCategoryType();
         this.view.update();
     }
 
-    getNonPlaceProductsByCategoryType() {
+    getNonPlacedProductsByCategoryType() {
         return this.app.storage.getData("products").filter(p => {
             if (p.category.type == this.regionController.selectedRegion.category) {
 
