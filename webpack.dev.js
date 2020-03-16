@@ -5,7 +5,7 @@ const common = require('./webpack.common.js')
 module.exports = merge(common, {
   mode: 'development',
   devServer: {
-    hot: true
+    hot: false
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()

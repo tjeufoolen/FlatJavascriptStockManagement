@@ -1,0 +1,8 @@
+.navbar {
+    .nav-item,
+    .navbar-brand {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

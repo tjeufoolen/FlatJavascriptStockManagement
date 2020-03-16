@@ -1,9 +1,15 @@
-import './app.scss';
+// Libraries
+import 'bootstrap';
 
+// Styling
+import './styles/app.scss';
+
+// Controllers
+import { AppController } from './controller/AppController';
+
+// Hot reload
 if (module.hot) {
     module.hot.accept();
 }
 
-const root = document.createElement("div");
-root.innerHTML = `<h1>Hello World!</h1>`;
-document.body.appendChild(root);
+window.app = new AppController();

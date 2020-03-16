@@ -1,0 +1,32 @@
+/******************************************************
+ * This code has been written for
+ *                                                                                                                     
+ * ,------.  ,--.             ,-----.          ,--.         ,--. 
+ * |  .-.  \ |  |,--,--,     '  .-.  ' ,---. ,-'  '-. ,---. |  | 
+ * |  |  \  :`-' |      \    |  | |  || .-. :'-.  .-'| .-. :|  | 
+ * |  '--'  /    |  ||  |    '  '-'  '\   --.  |  |  \   --.|  | 
+ * `-------'     `--''--'     `-----'  `----'  `--'   `----'`--'                                                                                                                         
+ *
+ * Copyright (C) 2020
+ *
+ * This project can not be copied and/or distributed
+ * without the express permission of the owner.
+ ******************************************************/
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Helpers
+@import "helpers/variables";
+@import 'helpers/colors';
+@import 'helpers/typography';
+
+// Components
+@import "components/navbar";
+@import "components/region";
+
+// Pages
+@import "pages/warehouse";
