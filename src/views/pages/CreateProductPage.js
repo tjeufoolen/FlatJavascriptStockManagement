@@ -156,12 +156,12 @@ export class CreateProductPage extends Form {
                 break;
             case this.categoryTypes.DECORATION:
                 contentArea.appendChild(this.createTextField("color", "Kleur", "Blauw, rood", "Voer een of meerdere kleuren in.", true));    
-                contentArea.appendChild(this.createNumberField("size", "Maat", "0", "Voer een maat in.", true));
+                contentArea.appendChild(this.createTextField("size", "Maat", "100", "Voer een maat in.", true));
                 contentArea.appendChild(this.createNumberField("amount", "Hoeveelheid in verpakking", "5", "Voer een verpakkingshoeveelheid in", true));       
                 break;
             case this.categoryTypes.CLOTHING:
                 contentArea.appendChild(this.createTextField("color", "Kleur", "Blauw, rood", "Voer een of meerdere kleuren in.", true));
-                contentArea.appendChild(this.createNumberField("size", "Maat", "0", "Voer een maat in.", true));
+                contentArea.appendChild(this.createTextField("size", "Maat", "Regular / XL", "Voer een maat in.", true));
                 break;
         }
     }

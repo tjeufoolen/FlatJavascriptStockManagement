@@ -25,7 +25,7 @@ export class CreateProductController {
     }
     
     validatePartTwo(costPrice, sellPrice){
-        if(!isNaN(costPrice) && !isNaN(sellPrice) ){
+        if(costPrice.length>0 && sellPrice.length>0){
             if(costPrice<sellPrice){
                 this.costPrice = parseFloat(costPrice);
                 this.sellPrice = parseFloat(sellPrice);
@@ -57,14 +57,14 @@ export class CreateProductController {
             
             case this.categoryTypes.DECORATION:
                 if(data.size.length>0 && data.color.length>0 && data.amount.length>0){
-                    this.category = new DecorationCategory(this.categoryTypes.DECORATION, parseFloat(data.size), data.color, parseFloat(data.amount));
+                    this.category = new DecorationCategory(this.categoryTypes.DECORATION, data.size, data.color, parseFloat(data.amount));
                     this.createProduct();
                 }
             break;
 
             case this.categoryTypes.CLOTHING:
                 if(data.color.length>0 && data.size.length>0){
-                    this.category = new ClothingCategory(this.categoryTypes.CLOTHING, data.color, parseFloat(data.size));
+                    this.category = new ClothingCategory(this.categoryTypes.CLOTHING, data.color, data.size);
                     this.createProduct();
                 }
             break;

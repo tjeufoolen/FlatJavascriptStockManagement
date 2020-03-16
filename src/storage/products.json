@@ -37,7 +37,7 @@
         "category": {
             "type": "Decoratie",
             "color": "rood, geel, wit",
-            "size": 250,
+            "size": "250",
             "amount": 3
         }
     },
