@@ -1,4 +1,5 @@
 const { View } = require('../View');
+import { DrawableCanvas } from "../../views/pages/DrawableCanvas";
 
 export class RegionComponent extends View {
 
@@ -9,6 +10,8 @@ export class RegionComponent extends View {
         this.controller = controller;
         this.root = root;
 
+        this.drawCanvas = new DrawableCanvas();
+        
         // Create selector
         this.createRegionSelector();
 
@@ -20,6 +23,8 @@ export class RegionComponent extends View {
 
         // Create (hover) card info
         this.createHoverableProductCardInfo();
+
+       
     }
 
     update() {
@@ -124,6 +129,56 @@ export class RegionComponent extends View {
         productStock.appendChild(productStockHeader);
         productStock.appendChild(productStockValue);
         productAttributes.appendChild(productStock);
+        
+        let productCanvas = this.drawCanvas.generateDrawableCanvas();
+        productCanvas.id = "productImage";
+
+        let imageGroup = this.createElement("div", ["custom-file", "mt-3"]);
+            let imageInput = this.createElement("input", ["custom-file-input"]);
+            imageInput.type = "file"; 
+            imageInput.id = "imageInput1";
+
+            imageInput.onchange = function(e) {
+                let canvas = document.querySelector("#productImage");
+                let context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                let img = new Image();
+                img.src = URL.createObjectURL(this.files[0]);
+
+                img.onload = ()=>{
+                    canvas.width = window.innerWidth * 0.5;
+                    canvas.height = window.innerHeight;
+                    
+                    let scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+
+                    let x = (canvas.width / 2) - (img.width / 2) * scale;
+                    let y = (canvas.height / 2) - (img.height / 2) * scale;
+
+                    context.drawImage(img, x, y, img.width * scale, img.height * scale);
+                }
+              };
+
+            let imageLabel = this.createElement("label", ["custom-file-label"]);
+            imageLabel.htmlFor = "imageInput1";
+            imageLabel.innerText = "Kies een bestand";
+        imageGroup.appendChild(imageInput);
+        imageGroup.appendChild(imageLabel);
+
+        this.productCard.appendChild(productCanvas)
+        this.productCard.appendChild(imageGroup);
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Add product information to product card
         this.productCard.appendChild(productName);
