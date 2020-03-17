@@ -21,7 +21,8 @@ export class ProductsPage extends Page {
     }
 
     createTable() {
-        this.table = this.createElement("table", ["table", "table-responsive", "mt-3"]);
+        this.tableContainer = this.createElement("div", ["table-responsive"]);
+        this.table = this.createElement("table", ["table", "mt-3"]);
 
         // Create table heading
         this.thead = this.createElement("thead", ["thead-light"]);
@@ -71,8 +72,11 @@ export class ProductsPage extends Page {
         // Add table body to table
         this.table.appendChild(this.tbody);
 
+        // Add table to container
+        this.tableContainer.appendChild(this.table);
+
         // Add table to root
-        this.addElementToRoot(this.table);
+        this.addElementToRoot(this.tableContainer);
     }
 
     addProducts(products) {

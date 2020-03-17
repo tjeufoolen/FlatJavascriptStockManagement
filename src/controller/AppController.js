@@ -10,6 +10,11 @@ export class AppController {
         // Setup project
         this.init();
 
+        // Register services (singleton)
+        this.services = {
+            weather: new WeatherService()
+        }
+
         // Load components
         this.navbar = new NavbarController(this);
         this.content = new ContentController(this);
