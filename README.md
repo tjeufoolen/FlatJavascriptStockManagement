@@ -3,6 +3,7 @@ WEBJS assessment blok 7
 
 ## Prerequisites
 - NodeJS / NPM
+- Api token from [OpenWeatherMap](https://openweathermap.org/api)
 
 ## Getting Started
 1. Clone the project
