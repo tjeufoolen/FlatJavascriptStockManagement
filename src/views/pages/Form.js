@@ -100,8 +100,7 @@ export class Form extends Page {
                 input.name = inputId;
 
                 for(let item in itemlist){
-                    let option = this.createElement("option",[]);
-                    option.innerText = item; 
+                    let option = this.createElement("option");
                     option.innerText = itemlist[item];
                     input.appendChild(option);
                 }

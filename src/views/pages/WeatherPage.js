@@ -16,7 +16,7 @@ export class WeatherPage extends Form {
         // Form
         this.formColumn = this.createElement("div", ["col-md-6","text-left"]);
         this.usageText = this.createElement("small", ["form-text", "text-muted", "pb-2"]);
-        this.usageText.innerText = "Voer in onderstaand veld een nederlandse postcode in (zonder letters) om de huidige weers informatie te bekijken.";
+        this.usageText.innerText = "Selecteer in onderstaande dropdown een van de D'n Oetel locaties om de huidige weers informatie te bekijken.";
         this.formColumn.appendChild(this.usageText);
         this.form = this.createForm();
         this.formColumn.appendChild(this.form);
@@ -34,7 +34,7 @@ export class WeatherPage extends Form {
 
     updateWeather(data) {
         if (data == null) {
-            this.errorLabel.innerText = "De opgegeven postcode kon niet gevonden worden. Zorg ervoor dat uw postcode voldoet aan het format '1234' zonder de 2 letters.";
+            this.errorLabel.innerText = "De opgegeven stad kon niet gevonden worden.";
             this.form.appendChild(this.errorLabel);
         } else {
             this.errorLabel.innerText = "";
@@ -57,17 +57,16 @@ export class WeatherPage extends Form {
 
     createForm() {
         let form = this.createElement("form", ["needs-validation"]);
-        form.onsubmit = (e) => {
-            e.preventDefault();
-            this.controller.getFromZip(this.getElement("input[name='zip']").value)
-        };
+        form.onsubmit = (e) => e.preventDefault();
         
-        this.zipField = this.createTextField("zip", "Postcode", "5691", "");
-        this.submitButton = this.createSubmitButton("Bekijken", ["mr-1"]);
+        this.citiesSelect = this.createSelectBox("city", "Stad", this.controller.cities, "Selecteer een stad");
+        this.citiesSelect.addEventListener("change", (e) => {
+            const city = event.target.value;
+            this.controller.getFromCity(city);
+        });
         this.errorLabel = this.createElement("div", ["weather-error", "alert", "alert-danger"]);
         
-        form.appendChild(this.zipField);
-        form.appendChild(this.submitButton);
+        form.appendChild(this.citiesSelect);
 
         return form;
     }

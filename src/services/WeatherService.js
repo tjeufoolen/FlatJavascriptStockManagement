@@ -11,16 +11,17 @@ export class WeatherService {
     }
 
     /**
-     * Fetches current weather data for a given zip from the Netherlands.
+     * Fetches current weather data for a given city name from the Netherlands.
      *
-     * @param {string} zip The zip code of a city (4 digits WITHOUT the 2 letters).
+     * @param {string} city The name of a city.
      * @return {promise} The result promise containing json.
      */
-    async getLocationDataAsync(zip) {
+    async getLocationDataAsync(city) {
         const key = process.env.WEATHERMAP_API_KEY;
-        const url = `${this.endpoint}?zip=${zip},nl&lang=nl&units=metric&appid=${key}`;
+        const url = `${this.endpoint}?q=${city},nl&lang=nl&units=metric&appid=${key}`;
 
         let response = await fetch(url);
+
         if (response.status == 200) {
             let data = await response.json();
 
