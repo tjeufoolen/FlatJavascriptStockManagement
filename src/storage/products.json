@@ -11,7 +11,8 @@
             "type": "Kleding",
             "color": "rood, geel, wit",
             "size": "regular"
-        }
+        },
+        "dataUrl": ""
     },
     {
         "id": 2,
@@ -24,7 +25,8 @@
         "category": {
             "type": "Tierlantijn",
             "weight": "100g"
-        }
+        },
+        "dataUrl": ""
     },
     {
         "id": 3,
@@ -39,7 +41,8 @@
             "color": "rood, geel, wit",
             "size": "250",
             "amount": 3
-        }
+        },
+        "dataUrl": ""
     },
     {
         "id": 4,
@@ -52,6 +55,7 @@
         "category": {
             "type": "Tierlantijn",
             "weight": "83g"
-        }
+        },
+        "dataUrl": ""
     }
 ]

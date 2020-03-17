@@ -1,5 +1,6 @@
 const { View } = require('../View');
 import { DrawableCanvas } from "../../views/pages/DrawableCanvas";
+import { Form } from "../pages/form";
 
 export class RegionComponent extends View {
 
@@ -82,6 +83,7 @@ export class RegionComponent extends View {
     }
 
     createHoverableProductCardInfo() {
+        let _self = this;
         // Create product card container
         this.productCard = this.createElement("div", ["product-info-card"]);
 
@@ -130,13 +132,16 @@ export class RegionComponent extends View {
         productStock.appendChild(productStockValue);
         productAttributes.appendChild(productStock);
         
+        let seperator = this.createElement("hr", []);
+
         let productCanvas = this.drawCanvas.generateDrawableCanvas();
         productCanvas.id = "productImage";
 
-        let imageGroup = this.createElement("div", ["custom-file", "mt-3"]);
+        let imageGroup = this.createElement("div", ["custom-file", "mt-1", "mb-3"]);
             let imageInput = this.createElement("input", ["custom-file-input"]);
             imageInput.type = "file"; 
             imageInput.id = "imageInput1";
+            imageInput.innerText = "Foto aanpassen"
 
             imageInput.onchange = function(e) {
                 let canvas = document.querySelector("#productImage");
@@ -165,19 +170,37 @@ export class RegionComponent extends View {
         imageGroup.appendChild(imageInput);
         imageGroup.appendChild(imageLabel);
 
-        this.productCard.appendChild(productCanvas)
-        this.productCard.appendChild(imageGroup);
+        let editPhotoButtonGroup = this.createElement("div", ["text-center"]);
+        let editPhotoButton = this.createElement("button", ["btn", "btn-secondary", "d-inline-block", "m-1"]);
+        editPhotoButton.innerText = "Opslaan";
+        editPhotoButton.onclick = () => {                        
+            _self.controller.updateProductImage(_self.getElement("#productImage").toDataURL());
+            _self.hideCard();
+        };
+        editPhotoButtonGroup.appendChild(editPhotoButton);
 
         // Add product information to product card
         this.productCard.appendChild(productName);
         this.productCard.appendChild(productDescription);
         this.productCard.appendChild(productAttributes);
+        
+        this.productCard.appendChild(seperator);
+        
+        this.productCard.appendChild(productCanvas)
+        this.productCard.appendChild(imageGroup);
+        this.productCard.appendChild(editPhotoButtonGroup);
+
+        this.productCard.appendChild(seperator);
 
         // Create and add remove from warehouse button
-        let removeFromWarehouseButton = this.createElement("button", ["btn", "btn-secondary"]);
+        let buttongroup = this.createElement("div", ["text-center"]);
+        
+        let removeFromWarehouseButton = this.createElement("button", ["btn", "btn-secondary", "d-inline-block", "m-1"]);
         removeFromWarehouseButton.innerText = "Locatie verwijderen";
         removeFromWarehouseButton.onclick = () => this.removeProductFromWarehouse();
-        this.productCard.appendChild(removeFromWarehouseButton);
+        buttongroup.appendChild(removeFromWarehouseButton);
+        
+        this.productCard.appendChild(buttongroup);
 
         // Append product card to root element
         this.root.appendChild(this.productCard);
@@ -306,6 +329,7 @@ export class RegionComponent extends View {
         const sellPriceBtw = this.productCard.querySelector(".product-sell-price-btw");
         const minimalStock = this.productCard.querySelector(".product-minimal-stock");
         const currentStock = this.productCard.querySelector(".product-stock");
+        const canvas = this.productCard.querySelector("#productImage");
         
         heading.innerText = `${product.name} #${product.id}`;
         description.innerText = product.description;
@@ -314,6 +338,14 @@ export class RegionComponent extends View {
         sellPriceBtw.innerText = product.getSellPriceWithBTW();
         minimalStock.innerText = product.minimalStock;
         currentStock.innerText = product.currentStock;
+ 
+        if(product.dataUrl){
+            let img = new Image();
+            img.src = product.dataUrl;
+            img.onload = () =>{
+                canvas.getContext('2d').drawImage(img,0,0);
+            }
+        }
 
         // Set position
         let x = (window.scrollX + elem.offsetLeft) - (this.productCard.offsetWidth/2);
