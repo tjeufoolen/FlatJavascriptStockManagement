@@ -147,9 +147,6 @@ export class RegionComponent extends View {
                 img.src = URL.createObjectURL(this.files[0]);
 
                 img.onload = ()=>{
-                    canvas.width = window.innerWidth * 0.5;
-                    canvas.height = window.innerHeight;
-                    
                     let scale = Math.min(canvas.width / img.width, canvas.height / img.height);
 
                     let x = (canvas.width / 2) - (img.width / 2) * scale;
@@ -167,18 +164,6 @@ export class RegionComponent extends View {
 
         this.productCard.appendChild(productCanvas)
         this.productCard.appendChild(imageGroup);
-
-
-
-
-
-
-
-
-
-
-
-
 
         // Add product information to product card
         this.productCard.appendChild(productName);

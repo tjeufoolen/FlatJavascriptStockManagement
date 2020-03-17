@@ -9,8 +9,8 @@ export class DrawableCanvas extends Page {
 
         this.canvas = this.createElement("canvas", []);
         this.ctx = this.canvas.getContext("2d");
-        this.canvas.width = 400;
-        this.canvas.height = 200; 
+        this.canvas.width = 800;
+        this.canvas.height = 400; 
         this.canvas.style.width = "100%";
         this.canvas.style.height = "100%";
         this.bounds = this.canvas.getBoundingClientRect();
@@ -48,9 +48,7 @@ export class DrawableCanvas extends Page {
         }, false);
     }
 
-    draw() {                
-        console.log(`drawing from (${this.prevY} - ${this.prevX}) to (${this.currY} - ${this.currX})`);
-        
+    draw() {                        
         this.ctx.beginPath();
 
         this.ctx.lineWidth = 4;
@@ -111,4 +109,5 @@ export class DrawableCanvas extends Page {
           y: (evt.clientY - rect.top) * scaleY     // been adjusted to be relative to element
         }
     }
+    
 }
