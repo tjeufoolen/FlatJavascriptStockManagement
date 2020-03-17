@@ -100,8 +100,7 @@ export class Form extends Page {
                 input.name = inputId;
 
                 for(let item in itemlist){
-                    let option = this.createElement("option",[]);
-                    option.innerText = item; 
+                    let option = this.createElement("option");
                     option.innerText = itemlist[item];
                     input.appendChild(option);
                 }
@@ -121,8 +120,10 @@ export class Form extends Page {
         return formRowName;
     }
 
-    createSubmitButton(buttonText){
+    createSubmitButton(buttonText, classes=[]){
          let formRowButton = this.createElement("div", ["form-group", "row", "justify-content-end"]);
+            classes.forEach(c => formRowButton.classList.add(c));
+
              let button = this.createElement("button",["btn", "btn-primary"]);
              button.type="submit";
              button.innerText=buttonText;

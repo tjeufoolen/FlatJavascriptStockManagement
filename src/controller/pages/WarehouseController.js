@@ -45,6 +45,11 @@ export class WarehouseController {
         });
     }
 
+    selectProduct(name) {
+        const product = this.products.find(p => p.name == name);
+        this.view.selectProduct(product);
+    }
+
     updateProductLocation(product, row, column) {
         this.warehouse
             .regions

@@ -1,4 +1,4 @@
-import { Form } from './form';
+import { Form } from './Form';
 
 const { Page } = require('./Page');
 
@@ -66,9 +66,6 @@ export class CreateProductPage extends Form {
         this.getElement("#sellPrice").addEventListener("input", () => {
             this.costPrice = parseFloat(_self.getElement("#costPrice").value);
             this.sellPrice = parseFloat(_self.getElement("#sellPrice").value);
-
-            console.log('got here');
-
 
             if(this.costPrice<this.sellPrice){
                 this.getElement("#sellPrice").classList.remove('is-invalid'); 
