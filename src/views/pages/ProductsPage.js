@@ -129,8 +129,12 @@ export class ProductsPage extends Page {
 
             // Actions
             let productActions = this.createElement("td");
-            let deleteButton = this.createElement("button", ["btn", "btn-danger"])
-            deleteButton.innerText = "Verwijderen";
+            let editButton = this.createElement("button", ["btn", "btn-secondary"])
+            editButton.appendChild(this.createElement("i", ["fas", "fa-edit"]));
+            editButton.onclick = () => this.controller.editProduct(p.id);
+            productActions.appendChild(editButton);
+            let deleteButton = this.createElement("button", ["btn", "btn-danger", "ml-1"])
+            deleteButton.appendChild(this.createElement("i", ["fas", "fa-trash-alt"]));
             deleteButton.onclick = () => this.controller.deleteProduct(p.id);
             productActions.appendChild(deleteButton);
             row.appendChild(productActions);

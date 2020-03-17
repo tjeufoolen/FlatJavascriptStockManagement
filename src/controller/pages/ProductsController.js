@@ -20,6 +20,10 @@ export class ProductsController {
         this.app.content.switchContent(this.app.constants.pages.CREATE_PRODUCT);
     }
 
+    editProduct(id) {
+        this.app.content.switchContent(this.app.constants.pages.EDIT_PRODUCT, id);
+    }
+
     deleteProduct(id) {
         this.app.storage.removeProduct(id);
         this.update();

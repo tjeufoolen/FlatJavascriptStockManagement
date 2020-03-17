@@ -8,7 +8,7 @@ export class Form extends Page {
     createTextField(inputId,labelName, placeholderText, invalidFeedback, isRequired=true){
         let formRowName = this.createElement("div", ["form-group", "row", "mt-4", "needs-validation"]);
             
-            let nameCol = this.createElement("div", ["col-sm-10"]);
+            let nameCol = this.createElement("div", ["col-sm-8"]);
                 let feedBack = this.createElement("div", ["invalid-feedback"]);
                 feedBack.innerText = invalidFeedback;
 
@@ -22,7 +22,7 @@ export class Form extends Page {
             nameCol.appendChild(input);
             nameCol.appendChild(feedBack);
 
-            let nameLabel = this.createElement("label",["col-sm-2","col-form-label"]);
+            let nameLabel = this.createElement("label",["col-sm-4","col-form-label"]);
             nameLabel.innerText = labelName;
             nameLabel.htmlFor = inputId;
         formRowName.appendChild(nameLabel);
@@ -35,7 +35,7 @@ export class Form extends Page {
     createTextArea(inputId,labelName, placeholderText, invalidFeedback, isRequired=true){
         let formRowName = this.createElement("div", ["form-group", "row", "mt-4", "needs-validation"]);
             
-            let nameCol = this.createElement("div", ["col-sm-10"]);
+            let nameCol = this.createElement("div", ["col-sm-8"]);
                 let feedBack = this.createElement("div", ["invalid-feedback"]);
                 feedBack.innerText = invalidFeedback;
 
@@ -48,7 +48,7 @@ export class Form extends Page {
             nameCol.appendChild(input);
             nameCol.appendChild(feedBack);
             
-            let nameLabel = this.createElement("label",["col-sm-2","col-form-label"]);
+            let nameLabel = this.createElement("label",["col-sm-4","col-form-label"]);
             nameLabel.innerText = labelName;
             nameLabel.htmlFor = inputId;
 
@@ -61,7 +61,7 @@ export class Form extends Page {
     createNumberField(inputId,labelName, placeholderText, invalidFeedback, isRequired=true, isDecimal=false){
         let formRowName = this.createElement("div", ["form-group", "row", "mt-4", "needs-validation"]);
             
-            let nameCol = this.createElement("div", ["col-sm-10"]);
+            let nameCol = this.createElement("div", ["col-sm-8"]);
                 let feedBack = this.createElement("div", ["invalid-feedback"]);
                 feedBack.innerText = invalidFeedback;
 
@@ -78,7 +78,7 @@ export class Form extends Page {
             nameCol.appendChild(feedBack);
             
 
-            let nameLabel = this.createElement("label",["col-sm-2","col-form-label"]);
+            let nameLabel = this.createElement("label",["col-sm-4","col-form-label"]);
             nameLabel.innerText = labelName;
             nameLabel.htmlFor = inputId;
 
@@ -91,7 +91,7 @@ export class Form extends Page {
     createSelectBox(inputId,labelName, itemlist, invalidFeedback, isRequired=true){
         let formRowName = this.createElement("div", ["form-group", "row", "mt-4"]);
             
-            let nameCol = this.createElement("div", ["col-sm-10"]);
+            let nameCol = this.createElement("div", ["col-sm-8"]);
                 let feedBack = this.createElement("div", ["invalid-feedback"]);
                 feedBack.innerText = invalidFeedback;
 
@@ -111,7 +111,7 @@ export class Form extends Page {
             nameCol.appendChild(feedBack);
             
 
-            let nameLabel = this.createElement("label",["col-sm-2","col-form-label"]);
+            let nameLabel = this.createElement("label",["col-sm-4","col-form-label"]);
             nameLabel.innerText = labelName;
             nameLabel.htmlFor = inputId;
         formRowName.appendChild(nameLabel);
