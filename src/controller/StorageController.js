@@ -131,4 +131,16 @@ export class StorageController {
         this.setData("warehouse", warehouse);
         this.warehouseSynched = false;
     }
+
+    updateProduct(product){
+        this.setData("products", 
+            this.getData("products").map(p => {
+                if (p.id == product.id) p = product;
+                return p;
+            })
+        );
+        
+        this.warehouseSynched = false;
+        this.productsSynched = false;
+    }
 }

@@ -25,6 +25,7 @@ export class AppController {
         this.constants = {
             "pages": {
                 CREATE_PRODUCT: 'createProduct',
+                EDIT_PRODUCT: 'editProduct',
                 PRODUCTS: 'products',
                 WAREHOUSE: 'warehouse',
                 WEATHER: 'weather',
