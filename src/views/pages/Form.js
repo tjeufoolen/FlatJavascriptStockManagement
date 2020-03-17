@@ -121,8 +121,10 @@ export class Form extends Page {
         return formRowName;
     }
 
-    createSubmitButton(buttonText){
+    createSubmitButton(buttonText, classes=[]){
          let formRowButton = this.createElement("div", ["form-group", "row", "justify-content-end"]);
+            classes.forEach(c => formRowButton.classList.add(c));
+
              let button = this.createElement("button",["btn", "btn-primary"]);
              button.type="submit";
              button.innerText=buttonText;

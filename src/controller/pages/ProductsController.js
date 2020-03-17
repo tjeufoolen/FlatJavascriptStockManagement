@@ -9,7 +9,6 @@ export class ProductsController {
     draw() {
         this.products = this.app.storage.getData("products");           
         this.view = new ProductsPage(this);
-        
     }
 
     createProduct(){

@@ -1,16 +1,10 @@
-.region-selector {
-    a:hover {
-        cursor: pointer;
-    }
-}
-
-.selected-product {
+.weather-info {
     padding: $default-spacing;
     background: #ececec;
     border-radius: $default-border-radius;
     margin-top: 10px;
 
-    #selected-product-name {
+    .weather-city {
         min-height: 28px;
         
         &:empty {
@@ -19,20 +13,23 @@
             opacity: 0.5;
         }
     }
-    #selected-product-description {
-        min-height: 48px;
-        
-        &:empty {
-            background-color: #cfcfcf;
-            border-radius: $default-border-radius;
-            opacity: 0.5;
-        }
+    
+    .weather-condition {
+        min-height: 100px;
+        background-color: #cfcfcf;
+        border-radius: $default-border-radius;
+        opacity: 0.5;
+        margin-bottom: 10px;
+        padding: 0 20px;
     }
-    .selected-product-attributes {
+
+    .weather-attributes {
+        margin-bottom: 0;
+
         tr {
             th {
                 padding: 2px $default-spacing 2px 0;
-                min-width: 200px;
+                min-width: 220px;
             }
 
             td {

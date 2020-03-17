@@ -21,9 +21,13 @@ export class WeatherService {
         const url = `${this.endpoint}?zip=${zip},nl&lang=nl&units=metric&appid=${key}`;
 
         let response = await fetch(url);
-        let data = await response.json();
+        if (response.status == 200) {
+            let data = await response.json();
 
-        return this.parseData(data);
+            return this.parseData(data);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -34,6 +38,7 @@ export class WeatherService {
      */
     parseData(data) {
         let parsed = {
+            city: data.name,
             condition: {
                 description: data.weather[0].description,
                 icon: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
