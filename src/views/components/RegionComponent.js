@@ -144,8 +144,11 @@ export class RegionComponent extends View {
                 context.clearRect(0, 0, canvas.width, canvas.height);
 
                 let img = new Image();
-                img.src = URL.createObjectURL(this.files[0]);
-
+                
+                if(this.files[0]){
+                    img.src = URL.createObjectURL(this.files[0]);
+                }
+                
                 img.onload = ()=>{
                     let scale = Math.min(canvas.width / img.width, canvas.height / img.height);
 
