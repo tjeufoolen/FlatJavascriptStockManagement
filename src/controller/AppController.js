@@ -3,6 +3,8 @@ import { StorageController } from "./StorageController";
 import { NavbarController } from "./components/NavbarController";
 import { ContentController } from "./components/ContentController";
 
+import { WeatherService } from "../services/WeatherService";
+
 export class AppController {
     constructor() {
         // Setup project
