@@ -3,6 +3,9 @@ const { Page } = require('./Page');
 export class ProductsPage extends Page {
     constructor(controller) {
         super();
+
+        // Set instance variables
+        this.controller = controller;
         
         // Heading
         this.addHeading("Producten");
@@ -18,6 +21,11 @@ export class ProductsPage extends Page {
 
         // Add products to table
         this.addProducts(controller.products);
+    }
+
+    update() {
+        this.getElement("tbody").innerHTML = "";
+        this.addProducts(this.controller.products);
     }
 
     createTable() {
@@ -54,6 +62,9 @@ export class ProductsPage extends Page {
         this.theadCurrentStock.scope = "col";
         this.theadCurrentStock.innerText = "Voorraad";
 
+        this.theadActions = this.createElement("th");
+        this.theadActions.scope = "col";
+
         // Add headers to table heading
         this.theadRow.appendChild(this.theadId);
         this.theadRow.appendChild(this.theadName);
@@ -61,6 +72,7 @@ export class ProductsPage extends Page {
         this.theadRow.appendChild(this.theadSellPrice);
         this.theadRow.appendChild(this.theadMinimumStock);
         this.theadRow.appendChild(this.theadCurrentStock);
+        this.theadRow.appendChild(this.theadActions);
         this.thead.appendChild(this.theadRow);
 
         // Add table heading to table
@@ -84,48 +96,45 @@ export class ProductsPage extends Page {
             // Create new row
             let row = this.createElement("tr");
 
-            // Create product id
+            // Id
             let productId = this.createElement("th");
             productId.scope = "row";
-            productId.innerText = (index + 1);
-
-            // Create product name
-            let productName = this.createElement("td");
-            productName.innerText = p.name;
-
-            // Create product cost price
-            let productCostPrice = this.createElement("td");
-            productCostPrice.innerText = p.costPrice;
-
-            // Create product sell price
-            let productSellPrice = this.createElement("td");
-            productSellPrice.innerText = p.sellPrice;
-
-            // Create product minimal stock
-            let productMinimalStock = this.createElement("td");
-            productMinimalStock.innerText = p.minimalStock;
-
-            // Create product stock
-            let productStock = this.createElement("td");
-            productStock.innerText = p.currentStock;
-
-            // Add product id to row
+            productId.innerText = p.id;
             row.appendChild(productId);
 
-            // Add product name to row
+            // Product name
+            let productName = this.createElement("td");
+            productName.innerText = p.name;
             row.appendChild(productName);
 
-            // Add product sell price to row
-            row.appendChild(productSellPrice);
-
-            // Add product cost price to row
+            // Cost price
+            let productCostPrice = this.createElement("td");
+            productCostPrice.innerText = p.costPrice;
             row.appendChild(productCostPrice);
 
-            // Add product minimal stock to row
+            // Sell price
+            let productSellPrice = this.createElement("td");
+            productSellPrice.innerText = p.sellPrice;
+            row.appendChild(productSellPrice);
+
+            // Minimal stock
+            let productMinimalStock = this.createElement("td");
+            productMinimalStock.innerText = p.minimalStock;
             row.appendChild(productMinimalStock);
 
-            // Add product stock to row
+            // Current stock
+            let productStock = this.createElement("td");
+            productStock.innerText = p.currentStock;
             row.appendChild(productStock);
+
+            // Actions
+            let productActions = this.createElement("td");
+            let deleteButton = this.createElement("button", ["btn", "btn-danger"])
+            deleteButton.innerText = "Verwijderen";
+            deleteButton.onclick = () => this.controller.deleteProduct(p.id);
+            productActions.appendChild(deleteButton);
+            row.appendChild(productActions);
+            
             
             // Add row to table body
             this.tbody.appendChild(row);

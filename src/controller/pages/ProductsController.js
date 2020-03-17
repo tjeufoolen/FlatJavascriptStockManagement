@@ -11,7 +11,17 @@ export class ProductsController {
         this.view = new ProductsPage(this);
     }
 
-    createProduct(){
+    update() {
+        this.products = this.app.storage.getData("products");
+        this.view.update();       
+    }
+
+    createProduct() {
         this.app.content.switchContent(this.app.constants.pages.CREATE_PRODUCT);
+    }
+
+    deleteProduct(id) {
+        this.app.storage.removeProduct(id);
+        this.update();
     }
 }
