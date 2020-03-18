@@ -63,6 +63,8 @@ export class WarehouseController {
     update() {
         this.warehouse = this.app.storage.getData("warehouse");
         this.products = this.getNonPlacedProductsByCategoryType();
+        this.regionController.update();
         this.view.update();
     }
+
 }

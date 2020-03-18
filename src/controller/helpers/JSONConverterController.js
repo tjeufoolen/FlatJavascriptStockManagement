@@ -45,7 +45,17 @@ export class JSONConverterController {
             }
 
             const product = new Product(
-                p.id, p.name, p.description, p.costPrice, p.sellPrice, p.minimalStock, p.currentStock, category
+                p.id, 
+                p.name, 
+                p.description, 
+                p.costPrice, 
+                p.sellPrice,
+                p.minimalStock, 
+                p.currentStock, 
+                category, 
+                p.dataUrl, 
+                p.imageDescription, 
+                p.customProperties
             );
 
             products.push(product);

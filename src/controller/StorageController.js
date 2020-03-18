@@ -4,7 +4,7 @@ import { JSONConverterController } from "./helpers/JSONConverterController";
 export class StorageController {
     constructor(app) {
         this.app = app;
-
+        
         this.productsSynched = false;
         this.warehouseSynched = false;
         this.citiesSynched = false;
@@ -14,24 +14,24 @@ export class StorageController {
 
         // Helpers
         this.converter = new JSONConverterController(this.app, this);
-
+        
         // Load data
         this.initProducts();
         this.initWarehouse();
         this.initCities();
     }
-
+    
     initProducts() {
         if (localStorage.getItem("products") == null) {
             // Create products
             const data = require('../storage/products.json');
             const products = this.converter.convertProducts(data);
-
+            
             // Save products
             this.setData("products", products);
         }
     }
-
+    
     initWarehouse() {
         if (localStorage.getItem("warehouse") == null) {
             // Create warehouse
@@ -87,16 +87,16 @@ export class StorageController {
                 }
         }
     }
-      
+    
     setData(name, data) {
         localStorage.setItem(name, JSON.stringify(data));
     }
-      
+    
     getNewProductId(){
         let data = this.getData("products");
         return data.reduce((max, p) => p.id > max ? p.id : max, data[0].id)+1;
     }
-      
+    
     addProduct(product){
         let data = this.getData("products");
         data.push(product);

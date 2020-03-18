@@ -27,20 +27,4 @@ export class Page extends View {
         // Append the page to the root
         this.root.appendChild(element);
     }
-
-    createTableRow(innerText, identifier) {
-        let row = this.createElement("tr");
-        
-        // heading
-        let heading = this.createElement("th");
-        heading.innerText = innerText;
-        row.appendChild(heading);
-        
-        // Value
-        let value = this.createElement("td");
-        value.id = identifier;
-        row.appendChild(value);
-
-        return row;
-    }
 }

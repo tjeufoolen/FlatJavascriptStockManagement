@@ -11,7 +11,8 @@ Simple stock management system build in flat javascript.
 3. Copy `.env.example` and rename to `.env`.
 4. Fill in your credentials for api usage.
 5. Run `npm run build`.
-6. Enjoy! :tada:
+6. Open the production ready version from `dist/index.html`.
+7. Enjoy! :tada:
 
 ## Authors
 - [Micha Nijenhof](https://github.com/killermi200)
