@@ -38,8 +38,7 @@ module.exports = {
         ]),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: 'src/template.html',
-            filename: 'index.html'
+            template: 'index.html'
         })
     ]
 }
