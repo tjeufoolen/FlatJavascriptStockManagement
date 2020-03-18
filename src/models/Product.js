@@ -1,5 +1,5 @@
 export class Product {
-    constructor(id, name, description, costPrice, sellPrice, minimalStock, currentStock, category, dataUrl) {
+    constructor(id, name, description, costPrice, sellPrice, minimalStock, currentStock, category, dataUrl, imageDescription) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -9,6 +9,7 @@ export class Product {
         this.currentStock = currentStock;
         this.category = category;
         this.dataUrl = dataUrl;
+        this.imageDescription = imageDescription; 
     }
 
     getCostPrice() {

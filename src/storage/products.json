@@ -12,7 +12,8 @@
             "color": "rood, geel, wit",
             "size": "regular"
         },
-        "dataUrl": ""
+        "dataUrl": "",
+        "imageDescription": ""
     },
     {
         "id": 2,
@@ -26,7 +27,8 @@
             "type": "Tierlantijn",
             "weight": "100g"
         },
-        "dataUrl": ""
+        "dataUrl": "",
+        "imageDescription": ""
     },
     {
         "id": 3,
@@ -42,7 +44,8 @@
             "size": "250",
             "amount": 3
         },
-        "dataUrl": ""
+        "dataUrl": "",
+        "imageDescription": ""
     },
     {
         "id": 4,
@@ -56,6 +59,7 @@
             "type": "Tierlantijn",
             "weight": "83g"
         },
-        "dataUrl": ""
+        "dataUrl": "",
+        "imageDescription": ""
     }
 ]

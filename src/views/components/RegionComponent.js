@@ -1,6 +1,5 @@
 const { View } = require('../View');
 import { DrawableCanvas } from "../../views/pages/DrawableCanvas";
-import { Form } from "../pages/form";
 
 export class RegionComponent extends View {
 
@@ -25,7 +24,7 @@ export class RegionComponent extends View {
         // Create (hover) card info
         this.createHoverableProductCardInfo();
 
-       
+        
     }
 
     update() {
@@ -134,6 +133,9 @@ export class RegionComponent extends View {
         
         let seperator = this.createElement("hr", []);
 
+        let imageHeading = this.createElement("h5", []);
+        imageHeading.innerText = "Afbeelding"
+
         let productCanvas = this.drawCanvas.generateDrawableCanvas();
         productCanvas.id = "productImage";
 
@@ -174,10 +176,20 @@ export class RegionComponent extends View {
         let editPhotoButton = this.createElement("button", ["btn", "btn-secondary", "d-inline-block", "m-1"]);
         editPhotoButton.innerText = "Opslaan";
         editPhotoButton.onclick = () => {                        
-            _self.controller.updateProductImage(_self.getElement("#productImage").toDataURL());
+            _self.controller.updateProductImage(_self.getElement("#productImage").toDataURL(), _self.getElement("#descriptionInput").value);
             _self.hideCard();
         };
         editPhotoButtonGroup.appendChild(editPhotoButton);
+
+        let descriptionHeading = this.createElement("h5", []);
+        descriptionHeading.innerText = "Beschrijving"
+
+        let descriptionGroup = this.createElement("div", ["form-group"])
+        let descriptionInput = this.createElement("textarea", ["form-control"]);
+        descriptionInput.rows = 3;
+        descriptionInput.id = "descriptionInput";
+
+        descriptionGroup.appendChild(descriptionInput);
 
         // Add product information to product card
         this.productCard.appendChild(productName);
@@ -186,11 +198,16 @@ export class RegionComponent extends View {
         
         this.productCard.appendChild(seperator);
         
+        this.productCard.appendChild(imageHeading);
         this.productCard.appendChild(productCanvas)
         this.productCard.appendChild(imageGroup);
+        this.productCard.appendChild(descriptionHeading);
+        this.productCard.appendChild(descriptionGroup);
         this.productCard.appendChild(editPhotoButtonGroup);
-
+        
         this.productCard.appendChild(seperator);
+        
+        
 
         // Create and add remove from warehouse button
         let buttongroup = this.createElement("div", ["text-center"]);
@@ -332,6 +349,7 @@ export class RegionComponent extends View {
         const minimalStock = this.productCard.querySelector(".product-minimal-stock");
         const currentStock = this.productCard.querySelector(".product-stock");
         const canvas = this.productCard.querySelector("#productImage");
+        const imageDescription = this.productCard.querySelector("#descriptionInput");
         
         heading.innerText = `${product.name} #${product.id}`;
         description.innerText = product.description;
@@ -340,8 +358,8 @@ export class RegionComponent extends View {
         sellPriceBtw.innerText = product.getSellPriceWithBTW();
         minimalStock.innerText = product.minimalStock;
         currentStock.innerText = product.currentStock;
- 
-
+        if(product.imageDescription) imageDescription.value = product.imageDescription;
+        
         canvas.getContext('2d').clearRect(0,0, canvas.width, canvas.height);
         if(product.dataUrl){
             let img = new Image();
