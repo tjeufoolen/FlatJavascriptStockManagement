@@ -91,46 +91,12 @@ export class RegionComponent extends View {
         const productDescription = this.createElement("p", ["product-description"]);
         let productAttributes = this.createElement("table", ["table", "table-bordered"]);
         
-        let productCostPrice = this.createElement("tr");
-        let productCostPriceHeader = this.createElement("th");
-        productCostPriceHeader.innerText = "Inkoopprijs";
-        let productCostPriceValue = this.createElement("td", ["product-cost-price"]);
-        productCostPrice.appendChild(productCostPriceHeader);
-        productCostPrice.appendChild(productCostPriceValue);
-        productAttributes.appendChild(productCostPrice);
-        
-        let productSellPrice = this.createElement("tr");
-        let productSellPriceHeader = this.createElement("th");
-        productSellPriceHeader.innerText = "Verkoopprijs (Excl. BTW)";
-        let productSellPriceValue = this.createElement("td", ["product-sell-price"]);
-        productSellPrice.appendChild(productSellPriceHeader);
-        productSellPrice.appendChild(productSellPriceValue);
-        productAttributes.appendChild(productSellPrice);
+        productAttributes.appendChild(this.createTableRow("Inkoopprijs", "product-cost-price"));
+        productAttributes.appendChild(this.createTableRow("Verkoopprijs (Excl. BTW)", "product-sell-price"));
+        productAttributes.appendChild(this.createTableRow("Verkoopprijs (Incl. BTW)", "product-sell-price-btw"));
+        productAttributes.appendChild(this.createTableRow("Minimale voorraad", "product-minimal-stock"));
+        productAttributes.appendChild(this.createTableRow("Huidige voorraad", "product-stock"));
 
-        let productSellPriceBtw = this.createElement("tr");
-        let productSellPriceBtwHeader = this.createElement("th");
-        productSellPriceBtwHeader.innerText = "Verkoopprijs (Incl. BTW)";
-        let productSellPriceBtwValue = this.createElement("td", ["product-sell-price-btw"]);
-        productSellPriceBtw.appendChild(productSellPriceBtwHeader);
-        productSellPriceBtw.appendChild(productSellPriceBtwValue);
-        productAttributes.appendChild(productSellPriceBtw);
-        
-        let productMinimalStock = this.createElement("tr");
-        let productMinimalStockHeader = this.createElement("th");
-        productMinimalStockHeader.innerText = "Minimale voorraad";
-        let productMinimalStockValue = this.createElement("td", ["product-minimal-stock"]);
-        productMinimalStock.appendChild(productMinimalStockHeader);
-        productMinimalStock.appendChild(productMinimalStockValue);
-        productAttributes.appendChild(productMinimalStock);
-        
-        let productStock = this.createElement("tr");
-        let productStockHeader = this.createElement("th");
-        productStockHeader.innerText = "Huidige voorraad";
-        let productStockValue = this.createElement("td", ["product-stock"]);
-        productStock.appendChild(productStockHeader);
-        productStock.appendChild(productStockValue);
-        productAttributes.appendChild(productStock);
-        
         let seperator = this.createElement("hr", []);
 
         let imageHeading = this.createElement("h5", []);
@@ -207,8 +173,6 @@ export class RegionComponent extends View {
         
         this.productCard.appendChild(seperator);
         
-        
-
         // Create and add remove from warehouse button
         let buttongroup = this.createElement("div", ["text-center"]);
         
@@ -343,11 +307,11 @@ export class RegionComponent extends View {
         // Set content
         const heading = this.productCard.querySelector(".product-name");
         const description = this.productCard.querySelector(".product-description");
-        const costPrice = this.productCard.querySelector(".product-cost-price");
-        const sellPrice = this.productCard.querySelector(".product-sell-price");
-        const sellPriceBtw = this.productCard.querySelector(".product-sell-price-btw");
-        const minimalStock = this.productCard.querySelector(".product-minimal-stock");
-        const currentStock = this.productCard.querySelector(".product-stock");
+        const costPrice = this.productCard.querySelector("#product-cost-price");
+        const sellPrice = this.productCard.querySelector("#product-sell-price");
+        const sellPriceBtw = this.productCard.querySelector("#product-sell-price-btw");
+        const minimalStock = this.productCard.querySelector("#product-minimal-stock");
+        const currentStock = this.productCard.querySelector("#product-stock");
         const canvas = this.productCard.querySelector("#productImage");
         const imageDescription = this.productCard.querySelector("#descriptionInput");
         
