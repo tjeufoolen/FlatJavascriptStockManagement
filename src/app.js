@@ -12,4 +12,4 @@ if (module.hot) {
     module.hot.accept();
 }
 
-window.app = new AppController();
+const app = new AppController();

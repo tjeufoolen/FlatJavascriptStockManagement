@@ -3,10 +3,17 @@ import { StorageController } from "./StorageController";
 import { NavbarController } from "./components/NavbarController";
 import { ContentController } from "./components/ContentController";
 
+import { WeatherService } from "../services/WeatherService";
+
 export class AppController {
     constructor() {
         // Setup project
         this.init();
+
+        // Register services (singleton)
+        this.services = {
+            weather: new WeatherService()
+        }
 
         // Load components
         this.navbar = new NavbarController(this);
@@ -17,18 +24,20 @@ export class AppController {
         // Set global constants
         this.constants = {
             "pages": {
-                WAREHOUSE: 'warehouse',
+                CREATE_PRODUCT: 'createProduct',
+                EDIT_PRODUCT: 'editProduct',
                 PRODUCTS: 'products',
-                CREATE_PRODUCT: 'createProduct'
+                WAREHOUSE: 'warehouse',
+                WEATHER: 'weather',
             }
         }
 
         // Set global enums
         this.enums = {
             "categoryTypes": {
-                FRILLS: 'Tierlantijn',
+                CLOTHING: 'Kleding',
                 DECORATION: 'Decoratie',
-                CLOTHING: 'Kleding'
+                FRILLS: 'Tierlantijn',
             },
             "regionTypes": {
                 PASSAGE: 'passage',

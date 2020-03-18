@@ -9,10 +9,23 @@ export class ProductsController {
     draw() {
         this.products = this.app.storage.getData("products");           
         this.view = new ProductsPage(this);
-        
     }
 
-    createProduct(){
+    update() {
+        this.products = this.app.storage.getData("products");
+        this.view.update();       
+    }
+
+    createProduct() {
         this.app.content.switchContent(this.app.constants.pages.CREATE_PRODUCT);
+    }
+
+    editProduct(id) {
+        this.app.content.switchContent(this.app.constants.pages.EDIT_PRODUCT, id);
+    }
+
+    deleteProduct(id) {
+        this.app.storage.removeProduct(id);
+        this.update();
     }
 }

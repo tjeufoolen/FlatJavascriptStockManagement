@@ -278,18 +278,20 @@ export class RegionComponent extends View {
         target.classList.remove("hovered");
 
         const product = this.controller.warehouseController.selectedProduct;
-        let elem = this.createElement("div", ["region-product"]);
-        elem.dataset.productid = product.id;
-        target.appendChild(elem);
-        target.onclick = () => this.toggleProductInfo(elem);
-
-        // Save product
-        const row = target.dataset.row;
-        const column = target.dataset.column;
-        this.controller.warehouseController.updateProductLocation(product, row, column);
-
-        // Update selector
-        this.controller.warehouseController.update();
+        if (product != null) {
+            let elem = this.createElement("div", ["region-product"]);
+            elem.dataset.productid = product.id;
+            target.appendChild(elem);
+            target.onclick = () => this.toggleProductInfo(elem);
+    
+            // Save product
+            const row = target.dataset.row;
+            const column = target.dataset.column;
+            this.controller.warehouseController.updateProductLocation(product, row, column);
+    
+            // Update selector
+            this.controller.warehouseController.update();
+        }
     }
 
     toggleProductInfo(product) {
