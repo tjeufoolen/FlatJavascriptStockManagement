@@ -1,5 +1,5 @@
 const { View } = require('../View');
-import { DrawableCanvas } from "../../views/pages/DrawableCanvas";
+import { DrawableCanvas } from "../components/DrawableCanvas";
 
 export class RegionComponent extends View {
 

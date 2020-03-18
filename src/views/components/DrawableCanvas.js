@@ -1,4 +1,4 @@
-const { Page } = require('./Page');
+const { Page } = require('../pages/Page');
 
 export class DrawableCanvas extends Page {
     constructor() {
