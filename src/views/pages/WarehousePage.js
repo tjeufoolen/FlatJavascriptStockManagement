@@ -47,7 +47,7 @@ export class WarehousePage extends Page {
             
             this.controller.products.forEach(p => {
                 let product = this.createElement("span", ["dropdown-item"]);
-                product.onclick = () => this.selectProduct(p.name);
+                product.onclick = () => this.controller.selectProduct(p.name);
                 product.innerText = p.name;
     
                 dropdownMenu.appendChild(product);
@@ -57,43 +57,29 @@ export class WarehousePage extends Page {
             this.getElement(".selected-product").draggable = false;
         }
 
-        this.resetSelectedProduct();
+        this.selectProduct();
     }
 
-    resetSelectedProduct() {
-        this.controller.selectedProduct = null;
-
-        const elem = this.getElement(".selected-product");
-        elem.querySelector(".selected-product-name").innerText = "";
-        elem.querySelector(".selected-product-description").innerText = "";
-        
-        const attributes = elem.querySelector(".selected-product-attributes");
-        attributes.querySelector(".selected-product-cost-price").innerText = "";
-        attributes.querySelector(".selected-product-sell-price").innerText = "";
-        attributes.querySelector(".selected-product-sell-price-btw").innerText = "";
-        attributes.querySelector(".selected-product-minimal-stock").innerText = "";
-        attributes.querySelector(".selected-product-stock").innerText = "";
-        
-        this.getElement(".selected-product").draggable = false;
-    }
-
-    selectProduct(name) {
-        const product = this.controller.products.find(p => p.name == name);
-        this.controller.selectedProduct = product; 
-        
+    selectProduct(product = null) {
+        this.controller.selectedProduct = product;
         const elem = this.getElement(".selected-product");
 
-        // Set data
-        elem.querySelector(".selected-product-name").innerText = product.name;
-        elem.querySelector(".selected-product-description").innerText = product.description;
+        // Set content
+        elem.querySelector("#selected-product-name").innerText = (product != null) ? product.name : "";
+        elem.querySelector("#selected-product-description").innerText = (product != null) ? product.description : "";
         const attributes = elem.querySelector(".selected-product-attributes");
-        attributes.querySelector(".selected-product-cost-price").innerText = product.getCostPrice();
-        attributes.querySelector(".selected-product-sell-price").innerText = product.getSellPrice();
-        attributes.querySelector(".selected-product-sell-price-btw").innerText = product.getSellPriceWithBTW();
-        attributes.querySelector(".selected-product-minimal-stock").innerText = product.minimalStock;
-        attributes.querySelector(".selected-product-stock").innerText = product.currentStock;
+        attributes.querySelector("#selected-product-cost-price").innerText = (product != null) ? product.getCostPrice() : "";
+        attributes.querySelector("#selected-product-sell-price").innerText = (product != null) ? product.getSellPrice() : "";
+        attributes.querySelector("#selected-product-sell-price-btw").innerText = (product != null) ? product.getSellPriceWithBTW() : "";
+        attributes.querySelector("#selected-product-minimal-stock").innerText = (product != null) ? product.minimalStock : "";
+        attributes.querySelector("#selected-product-stock").innerText = (product != null) ? product.currentStock : "";
 
-        this.getElement(".selected-product").draggable = true;
+        // Set draggable
+        if (product != null) {
+            this.getElement(".selected-product").draggable = true;
+        } else {
+            this.getElement(".selected-product").draggable = false;
+        }
     }
 
     createProductSelector(root) {
@@ -128,49 +114,16 @@ export class WarehousePage extends Page {
         productContainer.draggable = false;
         productContainer.addEventListener('dragstart', this.dragStart)
         productContainer.addEventListener('dragend', this.dragEnd);
-        let productName = this.createElement("h4", ["selected-product-name"]);
-        let productDescription = this.createElement("p", ["selected-product-description"]);
+        let productName = this.createElement("h4");
+        productName.id = "selected-product-name";
+        let productDescription = this.createElement("p");
+        productDescription.id = "selected-product-description";
         let productAttributes = this.createElement("table", ["selected-product-attributes"]);
-        
-        let productCostPrice = this.createElement("tr");
-        let productCostPriceHeader = this.createElement("th");
-        productCostPriceHeader.innerText = "Inkoopprijs";
-        let productCostPriceValue = this.createElement("td", ["selected-product-cost-price"]);
-        productCostPrice.appendChild(productCostPriceHeader);
-        productCostPrice.appendChild(productCostPriceValue);
-        productAttributes.appendChild(productCostPrice);
-        
-        let productSellPrice = this.createElement("tr");
-        let productSellPriceHeader = this.createElement("th");
-        productSellPriceHeader.innerText = "Verkoopprijs (Excl. btw)";
-        let productSellPriceValue = this.createElement("td", ["selected-product-sell-price"]);
-        productSellPrice.appendChild(productSellPriceHeader);
-        productSellPrice.appendChild(productSellPriceValue);
-        productAttributes.appendChild(productSellPrice);
-
-        let productSellPriceBTW = this.createElement("tr");
-        let productSellPriceBTWHeader = this.createElement("th");
-        productSellPriceBTWHeader.innerText = "Verkoopprijs (Incl. btw)";
-        let productSellPriceBTWValue = this.createElement("td", ["selected-product-sell-price-btw"]);
-        productSellPriceBTW.appendChild(productSellPriceBTWHeader);
-        productSellPriceBTW.appendChild(productSellPriceBTWValue);
-        productAttributes.appendChild(productSellPriceBTW);
-        
-        let productMinimalStock = this.createElement("tr");
-        let productMinimalStockHeader = this.createElement("th");
-        productMinimalStockHeader.innerText = "Minimale voorraad";
-        let productMinimalStockValue = this.createElement("td", ["selected-product-minimal-stock"]);
-        productMinimalStock.appendChild(productMinimalStockHeader);
-        productMinimalStock.appendChild(productMinimalStockValue);
-        productAttributes.appendChild(productMinimalStock);
-        
-        let productStock = this.createElement("tr");
-        let productStockHeader = this.createElement("th");
-        productStockHeader.innerText = "Huidige voorraad";
-        let productStockValue = this.createElement("td", ["selected-product-stock"]);
-        productStock.appendChild(productStockHeader);
-        productStock.appendChild(productStockValue);
-        productAttributes.appendChild(productStock);
+        productAttributes.appendChild(this.createTableRow("Inkoopprijs", "selected-product-cost-price"));
+        productAttributes.appendChild(this.createTableRow("Verkoopprijs (Excl. btw)", "selected-product-sell-price"));
+        productAttributes.appendChild(this.createTableRow("Verkoopprijs (Incl. btw)", "selected-product-sell-price-btw"));
+        productAttributes.appendChild(this.createTableRow("Minimale voorraad", "selected-product-minimal-stock"));
+        productAttributes.appendChild(this.createTableRow("Huidige voorraad", "selected-product-stock"));
         
         
         productContainer.appendChild(productName);

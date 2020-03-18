@@ -18,6 +18,8 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// Fontawesome
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css");
 
 // Helpers
 @import "helpers/variables";
@@ -30,3 +32,4 @@
 
 // Pages
 @import "pages/warehouse";
+@import "pages/weather";

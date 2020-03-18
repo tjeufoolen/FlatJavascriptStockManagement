@@ -7,6 +7,7 @@ export class NavbarController {
         this.menuItems = [
             { page: this.app.constants.pages.WAREHOUSE, title: "Magazijn" },
             { page: this.app.constants.pages.PRODUCTS, title: "Producten" },
+            { page: this.app.constants.pages.WEATHER, title: "Weer" },
         ];
 
         // Show content
