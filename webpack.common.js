@@ -38,7 +38,8 @@ module.exports = {
         ]),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: "D'n Oetel"
+            template: 'src/template.html',
+            filename: 'index.html'
         })
     ]
 }

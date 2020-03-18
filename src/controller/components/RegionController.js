@@ -7,6 +7,13 @@ export class RegionController {
         this.selectedProductId = null;
     }
 
+    update() {
+        let oldRegionName = this.selectedRegion.name;
+
+        this.selectedRegion = this.warehouseController.warehouse.regions.find(r => r.name == oldRegionName);
+        this.selectedProductId = null;
+    }
+
     switchRegion(name) {
         this.selectedRegion = this.warehouseController.warehouse.regions.find(r => r.name == name);
     }

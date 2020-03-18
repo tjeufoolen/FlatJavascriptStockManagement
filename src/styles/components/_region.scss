@@ -1,4 +1,5 @@
 $sectionSize: 25px;
+$sectionSizeSM: 20px;
 
 .region {
     border: 1px solid #ececec;
@@ -9,15 +10,22 @@ $sectionSize: 25px;
     
     .region-row {
         height: $sectionSize;
+        @include media-breakpoint-down(sm) {
+            height: $sectionSizeSM;
+        }
         
         .region-section {
             width: $sectionSize;
             height: $sectionSize;
+            @include media-breakpoint-down(sm) {
+                width: $sectionSizeSM;
+                height: $sectionSizeSM;
+            }
             display: inline-block;
             
             &.storage {
                 border: 1px solid black;
-
+                
                 &.hovered {
                     background-color: $primary-color;
                 }    
@@ -26,7 +34,7 @@ $sectionSize: 25px;
             &.passage {
                 background-color: #ececec;
             }
-
+            
             .region-product {
                 background-color: #333333;
                 width: 100%;
@@ -48,8 +56,13 @@ $sectionSize: 25px;
                     color: white;
                     font-size: 0.7rem;
                     position: absolute;
-                    bottom: $sectionSize / 5;
-                    left: $sectionSize / 4;
+                    bottom: 4px;
+                    left: 6px;
+
+                    @include media-breakpoint-down(sm) {
+                        bottom: 1px;
+                        left: 4px;
+                    }
                 }
             }
         }
@@ -65,16 +78,20 @@ $sectionSize: 25px;
     position: absolute;
     width: 350px;
 
+    @include media-breakpoint-down(sm) {
+        left: unset !important;
+    }
+    
     #product-description {
         max-width: 350px;
     }
-
+    
     table td,
     table th {
         font-size: 0.8rem;
         padding: 5px;
     }
-
+    
     canvas{
         border: 1px solid #333;
     }
