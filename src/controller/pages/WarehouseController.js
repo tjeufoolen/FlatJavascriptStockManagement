@@ -1,6 +1,5 @@
 import { WarehousePage } from '../../views/pages/WarehousePage';
 import { RegionController } from '../components/RegionController';
-import { Product } from '../../models/Product';
 
 export class WarehouseController {
     constructor(app) {
