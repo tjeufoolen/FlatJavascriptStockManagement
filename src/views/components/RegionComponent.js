@@ -339,15 +339,14 @@ export class RegionComponent extends View {
         minimalStock.innerText = product.minimalStock;
         currentStock.innerText = product.currentStock;
  
+
+        canvas.getContext('2d').clearRect(0,0, canvas.width, canvas.height);
         if(product.dataUrl){
-            canvas.getContext('2d').clearRect(0,0, canvas.width, canvas.height);
             let img = new Image();
             img.src = product.dataUrl;
             img.onload = () =>{
                 canvas.getContext('2d').drawImage(img,0,0);
             }
-        } else {
-            canvas.getContext('2d').clearRect(0,0, canvas.width, canvas.height);
         }
 
         // Set position
