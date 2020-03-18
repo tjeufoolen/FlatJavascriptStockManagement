@@ -1,7 +1,7 @@
 {
   "name": "DnOetel",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple stock management system build in flat javascript.",
   "main": "index.js",
   "scripts": {
     "develop": "webpack-dev-server --config webpack.dev.js",
@@ -9,11 +9,30 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tjeufoolen/DnOetel.git"
+    "url": "https://github.com/tjeufoolen/DnOetel.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "avans", 
+    "webjs", 
+    "eindopdracht", 
+    "carnaval", 
+    "voorraad", 
+    "magazijn"
+  ],
+  "author": {
+    "name": "Tjeu Foolen",
+    "email": "tagcfool@avans.nl",
+    "url": "https://github.com/tjeufoolen"
+  },
+  "contributors": [
+    {
+      "name": "Micha Nijenhof",
+      "email": "mhmtnije@avans.nl",
+      "url": "https://github.com/killermi200"
+    }
+  ],
+  "license": "UNLICENSED",
+  "private": true,
   "bugs": {
     "url": "https://github.com/tjeufoolen/DnOetel/issues"
   },
