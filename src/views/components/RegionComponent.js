@@ -87,8 +87,10 @@ export class RegionComponent extends View {
         this.productCard = this.createElement("div", ["product-info-card"]);
 
         // Product information
-        const productName = this.createElement("h3", ["product-name"]);
-        const productDescription = this.createElement("p", ["product-description"]);
+        const productName = this.createElement("h3", []);
+        productName.id = "product-name";
+        const productDescription = this.createElement("p", []);
+        productDescription.id = "product-description";
         let productAttributes = this.createElement("table", ["table", "table-bordered"]);
         
         productAttributes.appendChild(this.createTableRow("Inkoopprijs", "product-cost-price"));
@@ -305,8 +307,8 @@ export class RegionComponent extends View {
         const product = this.controller.getProduct(productId);
 
         // Set content
-        const heading = this.productCard.querySelector(".product-name");
-        const description = this.productCard.querySelector(".product-description");
+        const heading = this.productCard.querySelector("#product-name");
+        const description = this.productCard.querySelector("#product-description");
         const costPrice = this.productCard.querySelector("#product-cost-price");
         const sellPrice = this.productCard.querySelector("#product-sell-price");
         const sellPriceBtw = this.productCard.querySelector("#product-sell-price-btw");
