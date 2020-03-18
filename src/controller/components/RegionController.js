@@ -14,4 +14,11 @@ export class RegionController {
     getProduct(productId) {
         return this.warehouseController.app.storage.getData("products").find(p => p.id == productId);
     }
+
+    updateProductImage(imageUrl, imageDescription){
+        let product = this.getProduct(this.selectedProductId);
+        product.dataUrl = imageUrl;
+        product.imageDescription = imageDescription;
+        this.warehouseController.app.storage.updateProduct(product);
+    }
 }

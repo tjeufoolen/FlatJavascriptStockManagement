@@ -1,4 +1,5 @@
 const { View } = require('../View');
+import { DrawableCanvas } from "../components/DrawableCanvas";
 
 export class RegionComponent extends View {
 
@@ -9,6 +10,8 @@ export class RegionComponent extends View {
         this.controller = controller;
         this.root = root;
 
+        this.drawCanvas = new DrawableCanvas();
+        
         // Create selector
         this.createRegionSelector();
 
@@ -20,6 +23,8 @@ export class RegionComponent extends View {
 
         // Create (hover) card info
         this.createHoverableProductCardInfo();
+
+        
     }
 
     update() {
@@ -77,64 +82,108 @@ export class RegionComponent extends View {
     }
 
     createHoverableProductCardInfo() {
+        let _self = this;
         // Create product card container
         this.productCard = this.createElement("div", ["product-info-card"]);
 
         // Product information
-        const productName = this.createElement("h3", ["product-name"]);
-        const productDescription = this.createElement("p", ["product-description"]);
+        const productName = this.createElement("h3", []);
+        productName.id = "product-name";
+        const productDescription = this.createElement("p", []);
+        productDescription.id = "product-description";
         let productAttributes = this.createElement("table", ["table", "table-bordered"]);
         
-        let productCostPrice = this.createElement("tr");
-        let productCostPriceHeader = this.createElement("th");
-        productCostPriceHeader.innerText = "Inkoopprijs";
-        let productCostPriceValue = this.createElement("td", ["product-cost-price"]);
-        productCostPrice.appendChild(productCostPriceHeader);
-        productCostPrice.appendChild(productCostPriceValue);
-        productAttributes.appendChild(productCostPrice);
-        
-        let productSellPrice = this.createElement("tr");
-        let productSellPriceHeader = this.createElement("th");
-        productSellPriceHeader.innerText = "Verkoopprijs (Excl. BTW)";
-        let productSellPriceValue = this.createElement("td", ["product-sell-price"]);
-        productSellPrice.appendChild(productSellPriceHeader);
-        productSellPrice.appendChild(productSellPriceValue);
-        productAttributes.appendChild(productSellPrice);
+        productAttributes.appendChild(this.createTableRow("Inkoopprijs", "product-cost-price"));
+        productAttributes.appendChild(this.createTableRow("Verkoopprijs (Excl. BTW)", "product-sell-price"));
+        productAttributes.appendChild(this.createTableRow("Verkoopprijs (Incl. BTW)", "product-sell-price-btw"));
+        productAttributes.appendChild(this.createTableRow("Minimale voorraad", "product-minimal-stock"));
+        productAttributes.appendChild(this.createTableRow("Huidige voorraad", "product-stock"));
 
-        let productSellPriceBtw = this.createElement("tr");
-        let productSellPriceBtwHeader = this.createElement("th");
-        productSellPriceBtwHeader.innerText = "Verkoopprijs (Incl. BTW)";
-        let productSellPriceBtwValue = this.createElement("td", ["product-sell-price-btw"]);
-        productSellPriceBtw.appendChild(productSellPriceBtwHeader);
-        productSellPriceBtw.appendChild(productSellPriceBtwValue);
-        productAttributes.appendChild(productSellPriceBtw);
-        
-        let productMinimalStock = this.createElement("tr");
-        let productMinimalStockHeader = this.createElement("th");
-        productMinimalStockHeader.innerText = "Minimale voorraad";
-        let productMinimalStockValue = this.createElement("td", ["product-minimal-stock"]);
-        productMinimalStock.appendChild(productMinimalStockHeader);
-        productMinimalStock.appendChild(productMinimalStockValue);
-        productAttributes.appendChild(productMinimalStock);
-        
-        let productStock = this.createElement("tr");
-        let productStockHeader = this.createElement("th");
-        productStockHeader.innerText = "Huidige voorraad";
-        let productStockValue = this.createElement("td", ["product-stock"]);
-        productStock.appendChild(productStockHeader);
-        productStock.appendChild(productStockValue);
-        productAttributes.appendChild(productStock);
+        let seperator = this.createElement("hr", []);
+
+        let imageHeading = this.createElement("h5", []);
+        imageHeading.innerText = "Afbeelding"
+
+        let productCanvas = this.drawCanvas.generateDrawableCanvas();
+        productCanvas.id = "productImage";
+
+        let imageGroup = this.createElement("div", ["custom-file", "mt-1", "mb-3"]);
+            let imageInput = this.createElement("input", ["custom-file-input"]);
+            imageInput.type = "file"; 
+            imageInput.id = "imageInput1";
+            imageInput.innerText = "Foto aanpassen"
+
+            imageInput.onchange = function(e) {
+                let canvas = document.querySelector("#productImage");
+                let context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                let img = new Image();
+                
+                if(this.files[0]){
+                    img.src = URL.createObjectURL(this.files[0]);
+                }
+                
+                img.onload = ()=>{
+                    let scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+
+                    let x = (canvas.width / 2) - (img.width / 2) * scale;
+                    let y = (canvas.height / 2) - (img.height / 2) * scale;
+
+                    context.drawImage(img, x, y, img.width * scale, img.height * scale);
+                }
+              };
+
+            let imageLabel = this.createElement("label", ["custom-file-label"]);
+            imageLabel.htmlFor = "imageInput1";
+            imageLabel.innerText = "Kies een bestand";
+        imageGroup.appendChild(imageInput);
+        imageGroup.appendChild(imageLabel);
+
+        let editPhotoButtonGroup = this.createElement("div", ["text-center"]);
+        let editPhotoButton = this.createElement("button", ["btn", "btn-secondary", "d-inline-block", "m-1"]);
+        editPhotoButton.innerText = "Opslaan";
+        editPhotoButton.onclick = () => {                        
+            _self.controller.updateProductImage(_self.getElement("#productImage").toDataURL(), _self.getElement("#descriptionInput").value);
+            _self.hideCard();
+        };
+        editPhotoButtonGroup.appendChild(editPhotoButton);
+
+        let descriptionHeading = this.createElement("h5", []);
+        descriptionHeading.innerText = "Beschrijving"
+
+        let descriptionGroup = this.createElement("div", ["form-group"])
+        let descriptionInput = this.createElement("textarea", ["form-control"]);
+        descriptionInput.rows = 3;
+        descriptionInput.id = "descriptionInput";
+
+        descriptionGroup.appendChild(descriptionInput);
 
         // Add product information to product card
         this.productCard.appendChild(productName);
         this.productCard.appendChild(productDescription);
         this.productCard.appendChild(productAttributes);
-
+        
+        this.productCard.appendChild(seperator);
+        
+        this.productCard.appendChild(imageHeading);
+        this.productCard.appendChild(productCanvas)
+        this.productCard.appendChild(imageGroup);
+        this.productCard.appendChild(descriptionHeading);
+        this.productCard.appendChild(descriptionGroup);
+        this.productCard.appendChild(editPhotoButtonGroup);
+        
+        this.productCard.appendChild(seperator);
+        
         // Create and add remove from warehouse button
-        let removeFromWarehouseButton = this.createElement("button", ["btn", "btn-secondary"]);
+        let buttongroup = this.createElement("div", ["text-center"]);
+        
+        let removeFromWarehouseButton = this.createElement("button", ["btn", "btn-secondary", "d-inline-block", "m-1"]);
         removeFromWarehouseButton.innerText = "Locatie verwijderen";
         removeFromWarehouseButton.onclick = () => this.removeProductFromWarehouse();
-        this.productCard.appendChild(removeFromWarehouseButton);
+        buttongroup.appendChild(removeFromWarehouseButton);
+        
+        this.productCard.appendChild(buttongroup);
 
         // Append product card to root element
         this.root.appendChild(this.productCard);
@@ -258,13 +307,15 @@ export class RegionComponent extends View {
         const product = this.controller.getProduct(productId);
 
         // Set content
-        const heading = this.productCard.querySelector(".product-name");
-        const description = this.productCard.querySelector(".product-description");
-        const costPrice = this.productCard.querySelector(".product-cost-price");
-        const sellPrice = this.productCard.querySelector(".product-sell-price");
-        const sellPriceBtw = this.productCard.querySelector(".product-sell-price-btw");
-        const minimalStock = this.productCard.querySelector(".product-minimal-stock");
-        const currentStock = this.productCard.querySelector(".product-stock");
+        const heading = this.productCard.querySelector("#product-name");
+        const description = this.productCard.querySelector("#product-description");
+        const costPrice = this.productCard.querySelector("#product-cost-price");
+        const sellPrice = this.productCard.querySelector("#product-sell-price");
+        const sellPriceBtw = this.productCard.querySelector("#product-sell-price-btw");
+        const minimalStock = this.productCard.querySelector("#product-minimal-stock");
+        const currentStock = this.productCard.querySelector("#product-stock");
+        const canvas = this.productCard.querySelector("#productImage");
+        const imageDescription = this.productCard.querySelector("#descriptionInput");
         
         heading.innerText = `${product.name} #${product.id}`;
         description.innerText = product.description;
@@ -273,6 +324,16 @@ export class RegionComponent extends View {
         sellPriceBtw.innerText = product.getSellPriceWithBTW();
         minimalStock.innerText = product.minimalStock;
         currentStock.innerText = product.currentStock;
+        if(product.imageDescription) imageDescription.value = product.imageDescription;
+        
+        canvas.getContext('2d').clearRect(0,0, canvas.width, canvas.height);
+        if(product.dataUrl){
+            let img = new Image();
+            img.src = product.dataUrl;
+            img.onload = () =>{
+                canvas.getContext('2d').drawImage(img,0,0);
+            }
+        }
 
         // Set position
         let x = (window.scrollX + elem.offsetLeft) - (this.productCard.offsetWidth/2);

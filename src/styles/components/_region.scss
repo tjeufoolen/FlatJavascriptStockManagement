@@ -63,15 +63,19 @@ $sectionSize: 25px;
     padding: ($default-spacing / 2) $default-spacing;
     display: none;
     position: absolute;
-    width: 300px;
+    width: 350px;
 
-    .product-description {
-        max-width: 300px;
+    #product-description {
+        max-width: 350px;
     }
 
     table td,
     table th {
         font-size: 0.8rem;
         padding: 5px;
+    }
+
+    canvas{
+        border: 1px solid #333;
     }
 }
