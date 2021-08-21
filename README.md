@@ -1,4 +1,4 @@
-# DnOetel
+# FlatJavascriptStockManagement
 Simple stock management system build in flat javascript.
 
 ## Prerequisites
