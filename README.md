@@ -1,4 +1,4 @@
-# JS_StockManagement
+# JSStockManagement
 Simple stock management system build in flat javascript.
 
 ## Prerequisites
